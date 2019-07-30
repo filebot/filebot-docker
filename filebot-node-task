@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export DATA="$HOME/.filebot-node"
+export TASK="$1"
+
+filebot "@$DATA/task/$TASK.args" 2>&1 | tee -a "$DATA/log/$TASK.log"

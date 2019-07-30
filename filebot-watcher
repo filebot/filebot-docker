@@ -1,0 +1,17 @@
+#!/bin/sh
+
+inotifywait -m "$1" -e create -e moved_to -e modify --exclude '/[.@]' --format '%w%f' $INOTIFYWAIT_OPTS | stdbuf -oL uniq | while read -r FILE; do
+	# file may yield inode/x-empty for new files
+	sleep "$SETTLE_DOWN_TIME"
+
+	# abort if the file has been modified while we were asleep
+	if [ `find "$FILE" -type f -newermt "$SETTLE_DOWN_TIME seconds ago" -print -quit` ]; then
+		echo "Modified: $FILE"
+		continue
+	fi
+
+	# e.g. video.mp4: video/mp4
+	if file --mime-type "$FILE" | egrep "directory|video|audio|empty|octet-stream"; then
+		filebot -script fn:amc --action duplicate --conflict auto -non-strict --log-file amc.log --def excludeList=".excludes" unsorted=y music=y artwork=y "$@"
+	fi
+done
