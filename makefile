@@ -18,3 +18,8 @@ docker-watcher:
 	docker build --rm -t filebot-watcher -f Dockerfile.watcher .
 	mkdir -p input output
 	docker run -i -v ${PWD}:/volume1 -v data:/data filebot-watcher /volume1/input --output /volume1/output
+
+clean:
+	git reset --hard
+	git pull
+	git log -1
