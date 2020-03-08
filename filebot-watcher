@@ -1,6 +1,9 @@
 #!/bin/sh
 
 inotifywait -m "$1" -e create -e moved_to -e modify --exclude '/[.@]' --format '%w%f' $INOTIFYWAIT_OPTS | stdbuf -oL uniq | while read -r FILE; do
+	# make sure to inform the user that we are waiting for things to settle down
+	echo "Waiting $SETTLE_DOWN_TIME seconds for changes to settle down..."
+
 	# file may yield inode/x-empty for new files
 	sleep "$SETTLE_DOWN_TIME"
 
