@@ -2,9 +2,9 @@ FROM rednoah/filebot
 
 MAINTAINER Reinhard Pointner <rednoah@filebot.net>
 
-ENV FILEBOT_NODE_VERSION 0.2.8.7
+ENV FILEBOT_NODE_VERSION 0.2.9
 ENV FILEBOT_NODE_URL https://github.com/filebot/filebot-node/releases/download/$FILEBOT_NODE_VERSION/filebot-node-$FILEBOT_NODE_VERSION-generic.tar.xz
-ENV FILEBOT_NODE_SHA256 7a031214aa5cfb282b7aecaf5040bf7766c398b82494ccbdb4d9d36eab9d0a40
+ENV FILEBOT_NODE_SHA256 5fbff66c5afb7df5b95efc827b7031df0d218ad864898cc4fd9ede33efc27fac
 
 
 WORKDIR /usr/local/filebot-node
