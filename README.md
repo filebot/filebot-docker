@@ -1,9 +1,9 @@
 # FileBot Docker
 
 Docker images for [FileBot](https://www.filebot.net/).
-- [`filebot` (*Dockerfile*)](Dockerfile)
-- [`filebot-node` (*Dockerfile*)](Dockerfile.node)
-- [`filebot-watcher` (*Dockerfile*)](Dockerfile.watcher)
+- [`filebot` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile)
+- [`filebot-node` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.node)
+- [`filebot-watcher` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.watcher)
 
 
 ## filebot
@@ -33,7 +33,7 @@ docker run --rm -it -v $PWD:/volume1 -v data:/data -p 5452:5452 -e FILEBOT_NODE_
 
 ## filebot-watcher
 
-The [`filebot-watcher`](filebot-watcher) command-line tool watches a given folder and executes the [amc script](https://www.filebot.net/amc.html) on newly added files.
+The [`filebot-watcher`](https://github.com/filebot/filebot-docker/blob/master/filebot-watcher) command-line tool watches a given folder and executes the [amc script](https://www.filebot.net/amc.html) on newly added files.
 
 ```
 docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot:watcher /volume1/input --output /volume1/output
