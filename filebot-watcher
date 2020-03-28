@@ -8,7 +8,7 @@ inotifywait -m "$1" -e create -e moved_to -e modify --exclude '/[.@]' --format '
 	sleep "$SETTLE_DOWN_TIME"
 
 	# abort if the file has been modified while we were asleep
-	if [[ -n $(find "$FILE" -type f -newermt "$SETTLE_DOWN_TIME seconds ago" -print -quit) ]]; then
+	if [[ -n "$(find "$FILE" -type f -newermt "$SETTLE_DOWN_TIME seconds ago" -print -quit)" ]]; then
 		echo "Modified: $FILE"
 		continue
 	fi
@@ -17,6 +17,6 @@ inotifywait -m "$1" -e create -e moved_to -e modify --exclude '/[.@]' --format '
 	if file --mime-type "$FILE" | egrep "directory|video|audio|empty|octet-stream"; then
 		filebot -script fn:amc --action duplicate --conflict auto -non-strict --log-file amc.log --def excludeList=".excludes" unsorted=y music=y artwork=y "$@"
 	else
-		echo "Ignore: `file --mime-type "$FILE"`"
+		echo "Ignore: $(file --mime-type "$FILE")"
 	fi
 done
