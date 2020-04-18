@@ -3,7 +3,7 @@ FROM oracle/graalvm-ce:latest
 MAINTAINER Reinhard Pointner <rednoah@filebot.net>
 
 
-ENV FILEBOT_VERSION 4.9.0
+ENV FILEBOT_VERSION 4.9.1
 ENV FILEBOT_URL https://get.filebot.net/filebot/$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
 ENV FILEBOT_SHA256 053d1cfe6a99cc211b1097e1ed1a7261addd370182a09a25a0ee45123e12bb7a
 
