@@ -1,12 +1,12 @@
-FROM openjdk:13-alpine
+FROM openjdk:14-alpine
 
 
 MAINTAINER Reinhard Pointner <rednoah@filebot.net>
 
 
 ENV FILEBOT_VERSION 4.9.1
-ENV FILEBOT_URL https://get.filebot.net/filebot/$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
-ENV FILEBOT_SHA256 053d1cfe6a99cc211b1097e1ed1a7261addd370182a09a25a0ee45123e12bb7a
+ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
+ENV FILEBOT_SHA256 ba4e27843c46a80401e873e97647f92b34ea169ed9d70765f5b20e703e338950
 
 
 ENV FILEBOT_HOME /opt/filebot
