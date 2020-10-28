@@ -47,10 +47,10 @@ The first argument `$1` is the watch folder. The remaining arguments are [amc sc
 
 ## How do I activate my license?
 
-You can activate your license by calling `filebot --license *.psm` from within the docker container.
+You can activate your license by calling `filebot --license T1000.psm` from within the docker container.
 
 ```
-docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot --license /volume1/*.psm
+docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot --license /volume1/T1000.psm
 ```
 
 Your license will then be stored in `-v data:/data` which is the persistent application data folder common to all FileBot docker containers.
