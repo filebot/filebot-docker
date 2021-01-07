@@ -17,13 +17,9 @@ RUN apt-key adv --fetch-keys https://raw.githubusercontent.com/filebot/plugins/m
  && rm -rvf /var/lib/apt/lists/*
 
 
-VOLUME /data
-VOLUME /volume1
-
 ENV HOME /data
 ENV LANG C.UTF-8
 ENV FILEBOT_OPTS "-Dapplication.deployment=docker -Duser.home=$HOME"
 
-WORKDIR /volume1
 
 ENTRYPOINT ["filebot"]

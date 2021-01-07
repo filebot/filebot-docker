@@ -3,7 +3,7 @@
 export FILEBOT_NODE_HOST="0.0.0.0" # bind to all interfaces
 
 export FILEBOT_CMD="filebot"
-export FILEBOT_CMD_CWD="/volume1"
+export FILEBOT_CMD_CWD="/"
 export FILEBOT_CMD_UID=$(id -u)
 export FILEBOT_CMD_GID=$(id -g)
 

@@ -37,6 +37,4 @@ RUN set -eux \
         --force-fallback
 
 
-WORKDIR /volume1
-
 ENTRYPOINT ["/filebot"]
