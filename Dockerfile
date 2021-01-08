@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-MAINTAINER Reinhard Pointner <rednoah@filebot.net>
+LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
 ENV FILEBOT_VERSION 4.9.2

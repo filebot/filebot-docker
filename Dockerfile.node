@@ -1,6 +1,6 @@
 FROM rednoah/filebot
 
-MAINTAINER Reinhard Pointner <rednoah@filebot.net>
+LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 ENV FILEBOT_NODE_VERSION 0.3.1
 ENV FILEBOT_NODE_URL https://github.com/filebot/filebot-node/releases/download/$FILEBOT_NODE_VERSION/filebot-node-$FILEBOT_NODE_VERSION-generic.tar.xz
