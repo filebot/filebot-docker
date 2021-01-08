@@ -122,7 +122,7 @@ docker run --rm -it -v data:/data rednoah/filebot --license /volume1/T1000.psm
 Your license will then be stored in `-v data:/data` which is the persistent application data folder common to all FileBot docker containers.
 
 
-# Notes on --action MOVE and --action HARDLINK
+## Notes on --action MOVE and --action HARDLINK
 
 `docker` treats each volume mount as a separate filesystem. Thus, if you are using `--action MOVE` or `--action HARDLINK` then the input path and the output path must be on the same volume mount. If you process files across volume mounts, then `--action HARDLINK` will fail, and `--action MOVE` and `--action DUPLICATE` will resort to physically copying files.
 
