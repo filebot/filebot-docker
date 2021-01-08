@@ -101,10 +101,10 @@ services:
     container_name: filebot-watcher
     image: rednoah/filebot:watcher
     restart: unless-stopped
-    command: /volume1/input --output /volume1/output # see amc script usage
     volumes:
       - ${HOME}/FileBot:/data
       - ${HOME}/path/to/files:/volume1
+    command: /volume1/input --output /volume1/output # see amc script usage
 ```
 
 
