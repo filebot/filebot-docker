@@ -67,7 +67,7 @@ services:
     image: rednoah/filebot:node
     restart: unless-stopped
     volumes:
-      - '/etc/ssl:/etc/ssl:ro'
+      - /etc/ssl:/etc/ssl:ro
       - ${HOME}/FileBot:/data
       - ${HOME}/path/to/files:/volume1
     ports:
@@ -101,59 +101,11 @@ services:
     container_name: filebot-watcher
     image: rednoah/filebot:watcher
     restart: unless-stopped
-    command: /downloads --output /output #The remaining arguments are amc script options: https://www.filebot.net/amc.html
+    command: /volume1/input --output /volume1/output # see amc script usage
     volumes:
       - ${HOME}/FileBot:/data
       - ${HOME}/path/to/files:/volume1
 ```
-
-
-# MOVE and HARDLINK
-One of the requirements for hardlinking, is that the input/output must exist on the same filesystem. However, due to the way docker internally handles volume mounts, this can cause problems.
-
-docker treats each volume mount, as a separate filesystem
-
-In order for filebot to support hardlinking, it is recomended to use a single volume mount, that contains both your input/output files/directories.
-
-With the following config, it is not possible to hardlink files located in `/downloads`, to `/output`
-```
-version: '3.3'
-services:
-  filebot:
-    container_name: filebot
-    image: rednoah/filebot
-    restart: unless-stopped
-    volumes:
-      - ${HOME}/Filebot:/config
-      - ${HOME}/Downloads:/downloads
-      - ${HOME}/Output:/output
-```
-
-In order to solve this problem, it is recomended to create a single directory, that contains both `/downloads` and `/media` - then mount that directory.
-
-`/home/user/Downloads`  
-`/home/user/Output`  
-  
-would become  
-  
-`/home/user/Media`  
-`/home/user/Media/Downloads`  
-`/home/user/Media/Output`  
-  
-Then you would mount the Media folder inside your container.
-```
-version: '3.3'
-services:
-  filebot:
-    container_name: filebot
-    image: rednoah/filebot
-    restart: unless-stopped
-    volumes:
-      - ${HOME}/Filebot:/config
-      - ${HOME}/Media:/media
-```
-
-This will then allow you to hardlink between /Downloads and /Output, from within the docker container
 
 
 # FAQ
@@ -164,7 +116,23 @@ This will then allow you to hardlink between /Downloads and /Output, from within
 You can activate your license by calling `filebot --license T1000.psm` from within the docker container.
 
 ```
-docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot --license /volume1/T1000.psm
+docker run --rm -it -v data:/data rednoah/filebot --license /volume1/T1000.psm
 ```
 
 Your license will then be stored in `-v data:/data` which is the persistent application data folder common to all FileBot docker containers.
+
+
+# Notes on --action MOVE and --action HARDLINK
+
+`docker` treats each volume mount as a separate filesystem. Thus, if you are using `--action MOVE` or `--action HARDLINK` then the input path and the output path must be on the same volume mount. If you process files across volume mounts, then `--action HARDLINK` will fail, and `--action MOVE` and `--action DUPLICATE` will resort to physically copying files.
+
+Please organize your files like so, and then use `/path/to/files` as volume mount:
+```
+/path/to/files/input
+/path/to/files/output
+```
+```yml
+volumes:
+  - ${HOME}/FileBot:/data
+  - ${HOME}/path/to/files:/volume1
+```
