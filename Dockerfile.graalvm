@@ -1,6 +1,6 @@
 FROM oracle/graalvm-ce:latest
 
-MAINTAINER Reinhard Pointner <rednoah@filebot.net>
+LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
 ENV FILEBOT_VERSION 4.9.2

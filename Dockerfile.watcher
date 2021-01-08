@@ -1,6 +1,6 @@
 FROM rednoah/filebot
 
-MAINTAINER Reinhard Pointner <rednoah@filebot.net>
+LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 COPY filebot-watcher /usr/bin/filebot-watcher
 
