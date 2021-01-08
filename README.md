@@ -23,10 +23,10 @@ services:
     image: rednoah/filebot
     restart: unless-stopped
     volumes:
-      - ${HOME}/Filebot:/data
-      - ${HOME}/Downloads:/downloads
-      - ${HOME}/Output:/output #optional - see note about hardlinking
+      - ${HOME}/FileBot:/data
+      - ${HOME}/path/to/files:/volume1
 ```
+
 
 ## filebot-node
 
@@ -45,9 +45,8 @@ services:
     image: rednoah/filebot:node
     restart: unless-stopped
     volumes:
-      - ${HOME}/Filebot:/data
-      - ${HOME}/Downloads:/downloads
-      - ${HOME}/Output:/output #optional - see note about hardlinking
+      - ${HOME}/FileBot:/data
+      - ${HOME}/path/to/files:/volume1
     ports:
       - 5452:5452
 ```
@@ -69,9 +68,8 @@ services:
     restart: unless-stopped
     volumes:
       - '/etc/ssl:/etc/ssl:ro'
-      - ${HOME}/Filebot:/data
-      - ${HOME}/Downloads:/downloads
-      - ${HOME}/Output:/output #optional - see note about hardlinking
+      - ${HOME}/FileBot:/data
+      - ${HOME}/path/to/files:/volume1
     ports:
       - 5452:5452
       - 5453:5453
@@ -85,6 +83,7 @@ services:
       - FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt
 ```
 
+
 ## filebot-watcher
 
 The [`filebot-watcher`](https://github.com/filebot/filebot-docker/blob/master/filebot-watcher) command-line tool watches a given folder and executes the [amc script](https://www.filebot.net/amc.html) on newly added files.
@@ -92,10 +91,8 @@ The [`filebot-watcher`](https://github.com/filebot/filebot-docker/blob/master/fi
 ```bash
 docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot:watcher /volume1/input --output /volume1/output
 ```
-
 The first argument `$1` is the watch folder. The remaining arguments are [amc script](https://www.filebot.net/amc.html) options.
 
-docker-compose.yml
 ```yml
 # docker-compose.yml
 version: '3.3'
@@ -106,12 +103,12 @@ services:
     restart: unless-stopped
     command: /downloads --output /output #The remaining arguments are amc script options: https://www.filebot.net/amc.html
     volumes:
-      - ${HOME}/Filebot:/data
-      - ${HOME}/Downloads:/downloads
-      - ${HOME}/Output:/output #optional - see note about hardlinking
+      - ${HOME}/FileBot:/data
+      - ${HOME}/path/to/files:/volume1
 ```
 
-# Hardlinking
+
+# MOVE and HARDLINK
 One of the requirements for hardlinking, is that the input/output must exist on the same filesystem. However, due to the way docker internally handles volume mounts, this can cause problems.
 
 docker treats each volume mount, as a separate filesystem
