@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_VERSION 4.9.2
+ENV FILEBOT_VERSION 4.9.3
 
 
 RUN apt-get update \
