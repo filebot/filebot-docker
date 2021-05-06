@@ -1,16 +1,31 @@
-FROM oracle/graalvm-ce:latest
+FROM ghcr.io/graalvm/graalvm-ce:latest
 
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_VERSION 4.9.2
-ENV FILEBOT_URL https://get.filebot.net/filebot/$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
-ENV FILEBOT_SHA256 9f12000925b46c46fff1297174e07590e7a1c1e4eab670ad4bec3b4051559e41
+ENV FILEBOT_VERSION 4.9.3
+ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
+ENV FILEBOT_SHA256 4fecbc93be7bfea14254e09cfd235cedaf8a9b2b1c3e5a30b9b35063332bf236
 
 ENV FILEBOT_HOME /opt/filebot
 
-VOLUME /data
-VOLUME /volume1
+
+RUN microdnf install glibc-langpack-en xz \
+ && microdnf clean all
+
+RUN set -eux \
+ ## * fetch portable package
+ && curl -L -o /tmp/filebot.tar.xz "$FILEBOT_URL" \
+ && echo "$FILEBOT_SHA256 */tmp/filebot.tar.xz" | sha256sum -c - \
+ ## * install application files
+ && mkdir -p "$FILEBOT_HOME" \
+ && tar --extract --file /tmp/filebot.tar.xz --directory "$FILEBOT_HOME" --verbose \
+ && rm -v /tmp/filebot.tar.xz \
+ ## * delete incompatible native binaries
+ && find /opt/filebot/lib -type f -not -name libjnidispatch.so -delete \
+ ## * link /opt/filebot/data -> /data to persist application data files to the persistent data volume
+ && ln -s /data /opt/filebot/data
+
 
 ENV HOME /data
 ENV LANG C.UTF-8
@@ -18,19 +33,10 @@ ENV FILEBOT_OPTS "-Dapplication.deployment=docker -Duser.home=$HOME"
 
 
 RUN set -eux \
- && curl "$FILEBOT_URL" > /filebot.tar.xz \
- && echo "$FILEBOT_SHA256 */filebot.tar.xz" | sha256sum -c - \
- && mkdir -p "$FILEBOT_HOME" \
- && tar --extract --file /filebot.tar.xz --directory "$FILEBOT_HOME" --verbose \
- && rm /filebot.tar.xz
-
-
-RUN set -eux \
  && gu install native-image
 
-
 RUN set -eux \
- && sed -i 's/java/native-image/g;s/ -client//g' $FILEBOT_HOME/filebot.sh \
+ && sed -i -E 's/java/native-image/g; s/(--illegal-access|--add-opens|-XX|-client)(\S*)/ /g' $FILEBOT_HOME/filebot.sh \
  && $FILEBOT_HOME/filebot.sh \
         --verbose \
         --no-server \
