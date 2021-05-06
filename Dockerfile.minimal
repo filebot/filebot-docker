@@ -1,30 +1,32 @@
-FROM openjdk:14-alpine
+FROM openjdk:16-alpine
 
 
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_VERSION 4.9.2
+ENV FILEBOT_VERSION 4.9.3
 ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
-ENV FILEBOT_SHA256 9f12000925b46c46fff1297174e07590e7a1c1e4eab670ad4bec3b4051559e41
+ENV FILEBOT_SHA256 4fecbc93be7bfea14254e09cfd235cedaf8a9b2b1c3e5a30b9b35063332bf236
 
 
 ENV FILEBOT_HOME /opt/filebot
 
 
-# BROKEN PACKAGES
-# mediainfo: Segmentation fault
-# chromaprint: chromaprint (missing): required by: world[chromaprint]
-
-RUN apk add --update p7zip unrar \
+RUN apk add --update mediainfo chromaprint p7zip unrar \
  && rm -rf /var/cache/apk/*
 
 RUN set -eux \
- && wget -O /filebot.tar.xz "$FILEBOT_URL" \
- && echo "$FILEBOT_SHA256 */filebot.tar.xz" | sha256sum -c - \
+ ## * fetch portable package
+ && wget -O /tmp/filebot.tar.xz "$FILEBOT_URL" \
+ && echo "$FILEBOT_SHA256 */tmp/filebot.tar.xz" | sha256sum -c - \
+ ## * install application files
  && mkdir -p "$FILEBOT_HOME" \
- && tar --extract --file /filebot.tar.xz --directory "$FILEBOT_HOME" --verbose \
- && rm /filebot.tar.xz
+ && tar --extract --file /tmp/filebot.tar.xz --directory "$FILEBOT_HOME" --verbose \
+ && rm -v /tmp/filebot.tar.xz \
+ ## * delete incompatible native binaries
+ && find /opt/filebot/lib -type f -not -name libjnidispatch.so -delete \
+ ## * link /opt/filebot/data -> /data to persist application data files to the persistent data volume
+ && ln -s /data /opt/filebot/data
 
 
 ENV HOME /data
