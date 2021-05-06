@@ -7,6 +7,7 @@ ENV FILEBOT_VERSION 4.9.3
 ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
 ENV FILEBOT_SHA256 4fecbc93be7bfea14254e09cfd235cedaf8a9b2b1c3e5a30b9b35063332bf236
 
+
 ENV FILEBOT_HOME /opt/filebot
 
 
@@ -36,7 +37,7 @@ RUN set -eux \
  && gu install native-image
 
 RUN set -eux \
- && sed -i -E 's/java/native-image/g; s/(--illegal-access|--add-opens|-XX|-client)(\S*)/ /g' $FILEBOT_HOME/filebot.sh \
+ && sed -i -E 's/java/native-image/g; s/(--illegal-access|--add-opens|-XX|-client)(\S*)/ /g' "$FILEBOT_HOME/filebot.sh" \
  && $FILEBOT_HOME/filebot.sh \
         --verbose \
         --no-server \
