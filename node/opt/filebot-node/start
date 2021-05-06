@@ -8,9 +8,9 @@ export FILEBOT_CMD_UID=$(id -u)
 export FILEBOT_CMD_GID=$(id -g)
 
 export FILEBOT_NODE_DATA="$HOME/.filebot-node"
-export FILEBOT_TASK_CMD="/usr/bin/filebot-node-task"
+export FILEBOT_TASK_CMD="/opt/filebot-node/task"
 
-export FILEBOT_NODE_CLIENT="/usr/local/filebot-node/client"
+export FILEBOT_NODE_CLIENT="/opt/filebot-node/client"
 
 # --optimize_for_size (Enables optimizations which favor memory size over execution speed.)
-node --optimize_for_size "/usr/local/filebot-node/server/app.js"
+node --optimize_for_size "/opt/filebot-node/server/app.js"

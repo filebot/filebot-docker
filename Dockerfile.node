@@ -2,35 +2,39 @@ FROM rednoah/filebot
 
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
-ENV FILEBOT_NODE_VERSION 0.3.1
+
+ENV FILEBOT_NODE_VERSION 0.4.0
 ENV FILEBOT_NODE_URL https://github.com/filebot/filebot-node/releases/download/$FILEBOT_NODE_VERSION/filebot-node-$FILEBOT_NODE_VERSION-generic.tar.xz
-ENV FILEBOT_NODE_SHA256 c4fe5f159479bc1e721f95be3764c6c270a0412918ee3694a98b78e2af343df8
+ENV FILEBOT_NODE_SHA256 94cbd24dd1d9a6e88f68234aeb410992ce9e2a16eafa7d83bed03787f7d8ebe6
 
 
-WORKDIR /usr/local/filebot-node
+ENV FILEBOT_NODE_HOME /opt/filebot-node
 
 
 RUN apt-get update \
  && apt-get install -y nodejs xz-utils \
  && rm -rf /var/lib/apt/lists/*
 
+RUN set -eux \
+ ## * fetch generic package
+ && curl -L -o /tmp/filebot-node.tar.xz "$FILEBOT_NODE_URL" \
+ && echo "$FILEBOT_NODE_SHA256 */tmp/filebot-node.tar.xz" | sha256sum -c - \
+ ## * install application files
+ && mkdir -p "$FILEBOT_NODE_HOME" \
+ && tar --extract --file /tmp/filebot-node.tar.xz --directory "$FILEBOT_NODE_HOME" --verbose \
+ && rm -v /tmp/filebot-node.tar.xz \
+ ## * delete generic launcher scripts
+ && find "$FILEBOT_NODE_HOME" -executable -type f -delete
 
-RUN curl -L -o filebot-node.tar.xz $FILEBOT_NODE_URL \
- && echo "$FILEBOT_NODE_SHA256 *filebot-node.tar.xz" | sha256sum --check --strict \
- && tar xvf filebot-node.tar.xz \
- && rm -rvf filebot-node.tar.xz \
- && find . -executable -type f -delete
-
-
-COPY filebot-node filebot-node-task /usr/bin/
+# install custom launcher scripts
+COPY node /
 
 
 ENV FILEBOT_NODE_AUTH NONE
-
 ENV FILEBOT_NODE_HTTP YES
 ENV FILEBOT_NODE_HTTP_PORT 5452
 
 
 EXPOSE $FILEBOT_NODE_HTTP_PORT
 
-ENTRYPOINT ["/usr/bin/filebot-node"]
+ENTRYPOINT ["/opt/filebot-node/start"]
