@@ -2,9 +2,9 @@ docker:
 	docker build --rm -t filebot -f Dockerfile .
 	docker run -i -v ${PWD}:/volume1 -v data:/data filebot -script fn:sysinfo
 
-docker-minimal:
-	docker build --rm -t filebot-minimal -f Dockerfile.minimal .
-	docker run -i -v ${PWD}:/volume1 -v data:/data filebot-minimal -script fn:sysinfo
+docker-alpine:
+	docker build --rm -t filebot-alpine -f Dockerfile.alpine .
+	docker run -i -v ${PWD}:/volume1 -v data:/data filebot-alpine -script fn:sysinfo
 
 docker-graalvm:
 	docker build --rm -t filebot-graalvm -f Dockerfile.graalvm .
