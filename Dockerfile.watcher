@@ -2,8 +2,8 @@ FROM rednoah/filebot
 
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
-COPY filebot-watcher /usr/bin/filebot-watcher
+COPY watcher /
 
 ENV SETTLE_DOWN_TIME 600
 
-ENTRYPOINT ["/usr/bin/filebot-watcher"]
+ENTRYPOINT ["/opt/bin/filebot-watcher"]
