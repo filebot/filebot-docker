@@ -1,4 +1,4 @@
-name: Build Docker
+name: docker build filebot
 
 on:
   push:
