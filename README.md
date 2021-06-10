@@ -138,6 +138,7 @@ volumes:
 ```
 
 
-
 ## GitHub Actions:
 [![Build Docker](https://github.com/filebot/filebot-docker/actions/workflows/docker.yml/badge.svg)](https://github.com/filebot/filebot-docker/actions/workflows/docker.yml)
+[![Build Docker](https://github.com/filebot/filebot-docker/actions/workflows/docker.node.yml/badge.svg)](https://github.com/filebot/filebot-docker/actions/workflows/docker.node.yml)
+[![Build Docker](https://github.com/filebot/filebot-docker/actions/workflows/docker.watcher.yml/badge.svg)](https://github.com/filebot/filebot-docker/actions/workflows/docker.watcher.yml)
