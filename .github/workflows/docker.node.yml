@@ -1,6 +1,11 @@
 name: docker build filebot-node
 
 on:
+  workflow_run:
+    workflows:
+      - 'docker build filebot'
+    types:
+      - 'completed'
   push:
     paths:
       - 'Dockerfile.node'
