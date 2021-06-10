@@ -136,3 +136,8 @@ volumes:
   - ${HOME}/FileBot:/data
   - ${HOME}/path/to/files:/volume1
 ```
+
+
+
+## GitHub Actions:
+[![Build Docker](https://github.com/filebot/filebot-docker/actions/workflows/docker.yml/badge.svg)](https://github.com/filebot/filebot-docker/actions/workflows/docker.yml)
