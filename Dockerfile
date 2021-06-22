@@ -16,10 +16,11 @@ RUN apt-key adv --fetch-keys https://raw.githubusercontent.com/filebot/plugins/m
  && apt-get install -y --no-install-recommends filebot \
  && rm -rvf /var/lib/apt/lists/*
 
+RUN sed -i 's/-Dapplication.deployment=deb/-Dapplication.deployment=docker -Duser.home="$HOME"/g' /usr/bin/filebot
+
 
 ENV HOME /data
 ENV LANG C.UTF-8
-ENV FILEBOT_OPTS "-Dapplication.deployment=docker -Duser.home=$HOME"
 
 
 ENTRYPOINT ["filebot"]
