@@ -4,7 +4,7 @@ Docker images for [FileBot](https://www.filebot.net/).
 - [`filebot` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile)
 - [`filebot-node` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.node)
 - [`filebot-watcher` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.watcher)
-
+- [`filebot-xpra` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.xpra)
 
 ## filebot
 
