@@ -108,6 +108,30 @@ services:
 ```
 
 
+## filebot-xpra
+
+Run the [FileBot Desktop application](https://www.filebot.net/getting-started/) via [xpra](https://xpra.org/) and make it remotely available at [http://localhost:5454/](http://localhost:5454/).
+
+```bash
+docker run --rm -it -v $PWD:/volume1 -v data:/data -p 5454:5454 rednoah/filebot:xpra
+```
+
+```yml
+# docker-compose.yml
+version: '3.3'
+services:
+  filebot:
+    container_name: filebot-xpra
+    image: rednoah/filebot:xpra
+    restart: unless-stopped
+    volumes:
+      - ${HOME}/FileBot:/data
+      - ${HOME}/path/to/files:/volume1
+    ports:
+      - 5454:5454
+```
+
+
 # FAQ
 
 
