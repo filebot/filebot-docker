@@ -11,6 +11,7 @@ xpra start \
   --printing=no \
   --speaker=disabled \
   --microphone=disabled \
+  --system-tray=off \
   --mdns=no \
   --file-transfer=off \
   --open-files=off \
