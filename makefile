@@ -19,6 +19,10 @@ docker-watcher:
 	mkdir -p input output
 	docker run -it -v ${PWD}:/volume1 -v data:/data filebot-watcher /volume1/input --output /volume1/output
 
+docker-xpra:
+	docker build --rm -t filebot-xpra -f Dockerfile.xpra .
+	docker run -it -v ${PWD}:/volume1 -v data:/data -p 5454:5454 filebot-xpra
+
 clean:
 	git reset --hard
 	git pull

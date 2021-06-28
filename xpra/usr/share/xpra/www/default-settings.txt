@@ -1,0 +1,8 @@
+# Xpra HTML5 default settings
+
+keyboard = no
+clipboard = yes
+printing = no
+file_transfer = no
+floating_menu = no
+sound = no

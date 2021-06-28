@@ -1,0 +1,35 @@
+FROM rednoah/filebot
+
+LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
+
+
+RUN set -eux \
+ && apt-key adv --fetch-keys "https://xpra.org/gpg.asc" \
+ && curl -o "/etc/apt/sources.list.d/xpra.list" "https://xpra.org/repos/focal/xpra.list" \
+ && apt-get update \
+ && apt-get install -y xpra \
+ && rm -rvf /var/lib/apt/lists/*
+
+RUN apt-get update \
+ && apt-get install -y default-jre openjfx \
+ && rm -rvf /var/lib/apt/lists/*
+
+# fix xdg-open
+RUN ln -sf /usr/lib/xpra/xdg-open /usr/bin/xdg-open
+
+# install custom launcher scripts
+COPY xpra /
+
+
+# pretty font rendering
+ENV JAVA_OPTS "-Dawt.useSystemAAFontSettings=on"
+
+
+ENV XPRA_BIND 0.0.0.0
+ENV XPRA_PORT 5454
+ENV XPRA_AUTH none
+
+
+EXPOSE $XPRA_PORT
+
+ENTRYPOINT ["/opt/filebot-xpra/start"]
