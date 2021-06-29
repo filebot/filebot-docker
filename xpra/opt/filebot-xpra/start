@@ -4,19 +4,6 @@
 xpra start \
   --start-child="filebot" \
   --exit-with-children \
-  --opengl=no \
-  --pulseaudio=no \
-  --bell=no \
-  --webcam=no \
-  --printing=no \
-  --speaker=disabled \
-  --microphone=disabled \
-  --system-tray=off \
-  --mdns=no \
-  --file-transfer=off \
-  --open-files=off \
   --bind-tcp="$XPRA_BIND:$XPRA_PORT,auth=$XPRA_AUTH" \
-  --min-quality=80 \
-  --html=on \
   --daemon=no \
   $XPRA_OPTS

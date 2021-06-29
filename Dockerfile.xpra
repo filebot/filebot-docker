@@ -16,8 +16,8 @@ COPY xpra /
 
 
 # pretty font rendering
-ENV JAVA_OPTS "-Dawt.useSystemAAFontSettings=on"
-
+ENV JAVA_OPTS -Dawt.useSystemAAFontSettings=on
+ENV XDG_RUNTIME_DIR /tmp/xdg
 
 ENV XPRA_BIND 0.0.0.0
 ENV XPRA_PORT 5454
