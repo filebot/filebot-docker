@@ -1,10 +1,10 @@
 # FileBot Docker
 
 Docker images for [FileBot](https://www.filebot.net/).
-- [`filebot` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile)
-- [`filebot-node` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.node)
-- [`filebot-watcher` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.watcher)
-- [`filebot-xpra` (*Dockerfile*)](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.xpra)
+- `filebot` command-line tool ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile))
+- `filebot-node` web application ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.node))
+- `filebot-watcher` command-line tool ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.watcher))
+- `filebot-xpra` remote desktop environment ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.xpra))
 
 ## filebot
 
