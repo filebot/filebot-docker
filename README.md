@@ -6,6 +6,7 @@ Docker images for [FileBot](https://www.filebot.net/).
 - `filebot-watcher` command-line tool ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.watcher))
 - `filebot-xpra` remote desktop environment ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.xpra))
 
+
 ## filebot
 
 The [`filebot`](https://www.filebot.net/cli.html) command-line tool.
@@ -82,6 +83,7 @@ services:
       - FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key
       - FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt
 ```
+![FileBot Node](https://github.com/filebot/docs/blob/master/screenshots/docker-node.png)
 
 
 ## filebot-watcher
@@ -130,6 +132,8 @@ services:
     ports:
       - 5454:5454
 ```
+![Xpra Remote Desktop](https://github.com/filebot/docs/blob/master/screenshots/docker-xpra.png)
+
 
 
 # FAQ
@@ -160,7 +164,3 @@ volumes:
   - ${HOME}/FileBot:/data
   - ${HOME}/path/to/files:/volume1
 ```
-
-
-## GitHub Actions:
-[![docker build filebot](https://github.com/filebot/filebot-docker/actions/workflows/docker.yml/badge.svg)](https://github.com/filebot/filebot-docker/actions/workflows/docker.yml) [![docker build filebot-node](https://github.com/filebot/filebot-docker/actions/workflows/docker.node.yml/badge.svg)](https://github.com/filebot/filebot-docker/actions/workflows/docker.node.yml) [![docker build filebot-watcher](https://github.com/filebot/filebot-docker/actions/workflows/docker.watcher.yml/badge.svg)](https://github.com/filebot/filebot-docker/actions/workflows/docker.watcher.yml)
