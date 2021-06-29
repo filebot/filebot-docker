@@ -83,7 +83,7 @@ services:
       - FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key
       - FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt
 ```
-![FileBot Node](https://github.com/filebot/docs/blob/master/screenshots/docker-node.png)
+![FileBot Node](https://github.com/filebot/docs/raw/master/screenshots/docker-node.png)
 
 
 ## filebot-watcher
@@ -132,7 +132,7 @@ services:
     ports:
       - 5454:5454
 ```
-![Xpra Remote Desktop](https://github.com/filebot/docs/blob/master/screenshots/docker-xpra.png)
+![Xpra Remote Desktop](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra.png)
 
 
 
