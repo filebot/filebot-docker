@@ -7,15 +7,9 @@ RUN set -eux \
  && apt-key adv --fetch-keys "https://xpra.org/gpg.asc" \
  && curl -o "/etc/apt/sources.list.d/xpra.list" "https://xpra.org/repos/focal/xpra.list" \
  && apt-get update \
- && apt-get install -y xpra \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra default-jre openjfx \
+ && ln -sf /usr/lib/xpra/xdg-open /usr/bin/xdg-open \
  && rm -rvf /var/lib/apt/lists/*
-
-RUN apt-get update \
- && apt-get install -y default-jre openjfx \
- && rm -rvf /var/lib/apt/lists/*
-
-# fix xdg-open
-RUN ln -sf /usr/lib/xpra/xdg-open /usr/bin/xdg-open
 
 # install custom launcher scripts
 COPY xpra /
