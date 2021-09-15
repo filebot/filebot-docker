@@ -9,6 +9,7 @@ RUN set -eux \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra default-jre openjfx \
  && ln -sf /usr/lib/xpra/xdg-open /usr/bin/xdg-open \
+ && rm -rvf /usr/share/xpra/www/default-settings.* \
  && rm -rvf /var/lib/apt/lists/*
 
 # install custom launcher scripts
