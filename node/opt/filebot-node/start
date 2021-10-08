@@ -1,16 +1,23 @@
-#!/bin/sh
+#!/bin/sh -u
 
 export FILEBOT_NODE_HOST="0.0.0.0" # bind to all interfaces
 
 export FILEBOT_CMD="filebot"
 export FILEBOT_CMD_CWD="/"
-export FILEBOT_CMD_UID=$(id -u)
-export FILEBOT_CMD_GID=$(id -g)
+export FILEBOT_CMD_UID="$PUID"
+export FILEBOT_CMD_GID="$PGID"
 
-export FILEBOT_NODE_DATA="$HOME/.filebot-node"
+export FILEBOT_NODE_DATA="$HOME/node"
 export FILEBOT_TASK_CMD="/opt/filebot-node/task"
 
 export FILEBOT_NODE_CLIENT="/opt/filebot-node/client"
 
+
+# import user environment
+if [ -f "$FILEBOT_NODE_DATA/environment.sh" ]; then
+	source "$FILEBOT_NODE_DATA/environment.sh"
+fi
+
+
 # --optimize_for_size (Enables optimizations which favor memory size over execution speed.)
-node --optimize_for_size "/opt/filebot-node/server/app.js"
+exec node --optimize_for_size "/opt/filebot-node/server/app.js"
