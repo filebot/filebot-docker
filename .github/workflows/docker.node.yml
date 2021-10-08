@@ -8,8 +8,9 @@ on:
       - 'completed'
   push:
     paths:
-      - 'Dockerfile.node'
       - '.github/workflows/docker.node.yml'
+      - 'Dockerfile.node'
+      - 'node/**'
 
 jobs:
   docker:
