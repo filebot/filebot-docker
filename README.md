@@ -150,6 +150,19 @@ docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot --license /vo
 Your license will then be stored in `-v data:/data` which is the persistent application data folder common to all FileBot docker containers.
 
 
+## How to do I run the process inside the container as a different user?
+
+You can set the environment variables `PUID` and `PGID` to run the process with the given `UID`:
+```
+-e PUID=1000 -e PGID=1000
+```
+```yml
+environment:
+  - PUID=1000
+  - PGID=1000
+  ```
+
+
 ## Notes on `--action MOVE` and `--action HARDLINK`
 
 `docker` treats each volume mount as a separate filesystem. Thus, if you are using `--action MOVE` or `--action HARDLINK` then the input path and the output path must be on the same volume mount. If you process files across volume mounts, then `--action HARDLINK` will fail with `I/O error: cross-device link`, and `--action MOVE` and `--action DUPLICATE` will resort to physically copying files.
