@@ -6,4 +6,4 @@ COPY watcher /
 
 ENV SETTLE_DOWN_TIME 600
 
-ENTRYPOINT ["/opt/bin/filebot-watcher"]
+ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/filebot-watcher"]

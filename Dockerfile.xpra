@@ -25,4 +25,4 @@ ENV XPRA_AUTH none
 
 EXPOSE $XPRA_PORT
 
-ENTRYPOINT ["/opt/filebot-xpra/start"]
+ENTRYPOINT ["/opt/bin/run-as-user", "/opt/filebot-xpra/start"]

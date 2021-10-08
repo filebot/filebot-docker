@@ -37,4 +37,4 @@ ENV FILEBOT_NODE_HTTP_PORT 5452
 
 EXPOSE $FILEBOT_NODE_HTTP_PORT
 
-ENTRYPOINT ["/opt/filebot-node/start"]
+ENTRYPOINT ["/opt/bin/run-as-user", "/opt/filebot-node/start"]
