@@ -11,4 +11,4 @@ export HOME="$HOME/$PUSER"
 
 
 # run as custom user
-exec sudo -u "$PUSER" -g "$PGROUP" -D "$HOME" --non-interactive "$@"
+exec sudo -u "$PUSER" -g "$PGROUP" -D "$HOME" --non-interactive --preserve-env "$@"
