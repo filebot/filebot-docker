@@ -3,8 +3,9 @@ name: docker build filebot
 on:
   push:
     paths:
-      - 'Dockerfile'
       - '.github/workflows/docker.yml'
+      - 'Dockerfile'
+      - 'generic/**'
 
 jobs:
   docker:
