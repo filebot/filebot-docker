@@ -14,7 +14,7 @@ inotifywait -m "$1" -e create -e moved_to -e modify --exclude '/[.@]' --format '
 	fi
 
 	# e.g. video.mp4: video/mp4
-	if file --mime-type "$FILE" | egrep "directory|video|audio|empty|octet-stream"; then
+	if file --mime-type "$FILE" | egrep --quiet "directory|video|audio|empty|octet-stream"; then
 		filebot -script fn:amc --action duplicate --conflict auto -non-strict --log-file amc.log --def excludeList=".excludes" unsorted=y music=y artwork=y "$@"
 	else
 		echo "Ignore: $(file --mime-type "$FILE")"
