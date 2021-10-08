@@ -143,7 +143,7 @@ services:
 
 You can activate your license by calling `filebot --license T1000.psm` from within the docker container.
 
-```
+```bash
 docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot --license /volume1/T1000.psm
 ```
 
@@ -153,14 +153,14 @@ Your license will then be stored in `-v data:/data` which is the persistent appl
 ## How to do I run the process inside the container as a different user?
 
 You can set the environment variables `PUID` and `PGID` to run the process with the given `UID`:
-```
+```bash
 -e PUID=1000 -e PGID=1000
 ```
 ```yml
 environment:
   - PUID=1000
   - PGID=1000
-  ```
+```
 
 
 ## Notes on `--action MOVE` and `--action HARDLINK`
@@ -172,8 +172,10 @@ Please organize your files like so, and then use `/path/to/files` as volume moun
 /path/to/files/input
 /path/to/files/output
 ```
+```bash
+-v /path/to/files:/volume1
+```
 ```yml
 volumes:
-  - ${HOME}/FileBot:/data
-  - ${HOME}/path/to/files:/volume1
+  - /path/to/files:/volume1
 ```
