@@ -1,0 +1,14 @@
+#!/bin/sh -u
+
+
+# configure custom user
+export HOME="$HOME/$PUSER"
+(
+	addgroup "$PGROUP" --gid "$PGID"
+	adduser "$PUSER" --uid "$PUID" --gid "$PGID" --gecos "" --home "$HOME" --disabled-password
+	chown --recursive "$PUID:$PGID" "$HOME"
+) > /dev/null
+
+
+# run as custom user
+exec sudo -u "$PUSER" -g "$PGROUP" -D "$HOME" --non-interactive "$@"
