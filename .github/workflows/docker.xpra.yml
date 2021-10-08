@@ -8,8 +8,9 @@ on:
       - 'completed'
   push:
     paths:
-      - 'Dockerfile.xpra'
       - '.github/workflows/docker.xpra.yml'
+      - 'Dockerfile.xpra'
+      - 'xpra/**'
 
 jobs:
   docker:
