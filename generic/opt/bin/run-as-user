@@ -1,14 +1,18 @@
 #!/bin/sh -u
 
 
-# configure custom user
+# run as root
+if [ 0 -eq "$PUID" ] || [ 0 -eq "$PGID" ]; then
+	exec "$@"
+fi
+
+
+# configure normal user
 export HOME="$HOME/$PUSER"
-(
-	addgroup "$PGROUP" --gid "$PGID"
-	adduser "$PUSER" --uid "$PUID" --gid "$PGID" --gecos "" --home "$HOME" --disabled-password
-	chown --recursive "$PUID:$PGID" "$HOME"
-) > /dev/null
+addgroup --quiet "$PGROUP" --gid "$PGID"
+adduser --quiet "$PUSER" --uid "$PUID" --gid "$PGID" --gecos "" --home "$HOME" --disabled-password
+chown --recursive "$PUID:$PGID" "$HOME"
 
 
-# run as custom user
-exec sudo -u "$PUSER" -g "$PGROUP" -D "$HOME" --non-interactive --preserve-env "$@"
+# run as normal user
+exec sudo -u "#$PUID" -g "#$PGID" -D "$HOME" --non-interactive --preserve-env "$@"

@@ -11,19 +11,19 @@ ENV FILEBOT_NODE_SHA256 b31dc5719a9dcad9083dbdb1edf5438de6ffe2da633c1ef8a22dfbbc
 ENV FILEBOT_NODE_HOME /opt/filebot-node
 
 
-RUN apt-get update \
- && apt-get install -y nodejs xz-utils \
- && rm -rf /var/lib/apt/lists/*
-
 RUN set -eux \
- ## * fetch generic package
+ ## ** install dependencies
+ && apt-get update \
+ && apt-get install -y nodejs \
+ && rm -rf /var/lib/apt/lists/* \
+ ## ** fetch generic package
  && curl -L -o /tmp/filebot-node.tar.xz "$FILEBOT_NODE_URL" \
  && echo "$FILEBOT_NODE_SHA256 */tmp/filebot-node.tar.xz" | sha256sum -c - \
- ## * install application files
+ ## ** install application files
  && mkdir -p "$FILEBOT_NODE_HOME" \
  && tar --extract --file /tmp/filebot-node.tar.xz --directory "$FILEBOT_NODE_HOME" --verbose \
  && rm -v /tmp/filebot-node.tar.xz \
- ## * delete generic launcher scripts
+ ## ** delete generic launcher scripts
  && find "$FILEBOT_NODE_HOME" -executable -type f -delete
 
 # install custom launcher scripts

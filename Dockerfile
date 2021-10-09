@@ -6,18 +6,24 @@ LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 ENV FILEBOT_VERSION 4.9.4
 
 
-RUN apt-get update \
- && apt-get install -y default-jre-headless libjna-java mediainfo libchromaprint-tools unrar p7zip-full p7zip-rar mkvtoolnix atomicparsley sudo gnupg curl file inotify-tools \
- && rm -rvf /var/lib/apt/lists/*
+RUN set -eux \
+ ## ** install dependencies
+ && apt-get update \
+ && apt-get install -y default-jre-headless libjna-java mediainfo libchromaprint-tools unrar p7zip-full p7zip-rar xz-utils mkvtoolnix atomicparsley sudo gnupg curl file inotify-tools \
+ && rm -rvf /var/lib/apt/lists/* \
+ ## ** remove default users and groups
+ && groupmod --gid 90 "messagebus" \
+ && delgroup "users"
 
-RUN apt-key adv --fetch-keys https://raw.githubusercontent.com/filebot/plugins/master/gpg/maintainer.pub  \
+RUN set -eux \
+ ## ** install filebot
+ && apt-key adv --fetch-keys https://raw.githubusercontent.com/filebot/plugins/master/gpg/maintainer.pub  \
  && echo "deb [arch=all] https://get.filebot.net/deb/ universal main" > /etc/apt/sources.list.d/filebot.list \
  && apt-get update \
  && apt-get install -y --no-install-recommends filebot \
- && rm -rvf /var/lib/apt/lists/*
-
-# custom application configuration
-RUN sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
+ && rm -rvf /var/lib/apt/lists/* \
+ ## ** apply custom application configuration
+ && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
 
 # install custom launcher scripts
 COPY generic /

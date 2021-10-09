@@ -161,6 +161,7 @@ environment:
   - PUID=1000
   - PGID=1000
 ```
+You may use `PUID=0` to run as `root` or docker `--user`.
 
 
 ## Notes on `--action MOVE` and `--action HARDLINK`
