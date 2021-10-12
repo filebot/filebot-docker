@@ -9,10 +9,11 @@ fi
 
 # configure normal user
 export HOME="$HOME/$PUSER"
-addgroup --quiet "$PGROUP" --gid "$PGID"
-adduser --quiet "$PUSER" --uid "$PUID" --gid "$PGID" --gecos "" --home "$HOME" --disabled-password
-chown --recursive "$PUID:$PGID" "$HOME"
-
+(
+	addgroup "$PGROUP" --gid "$PGID"
+	adduser "$PUSER" --uid "$PUID" --gid "$PGID" --gecos "" --home "$HOME" --disabled-password
+	chown --recursive "$PUID:$PGID" "$HOME"
+) > /dev/null 2>&1
 
 # run as normal user
 exec sudo -u "#$PUID" -g "#$PGID" -D "$HOME" --non-interactive --preserve-env "$@"
