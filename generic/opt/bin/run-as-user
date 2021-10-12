@@ -10,8 +10,9 @@ fi
 # configure normal user
 export HOME="$HOME/$PUSER"
 (
-	addgroup "$PGROUP" --gid "$PGID"
-	adduser "$PUSER" --uid "$PUID" --gid "$PGID" --gecos "" --home "$HOME" --disabled-password
+	getent group "$PGID" || addgroup "$PGROUP" --gid "$PGID"
+	getent passwd "$PUID" || adduser "$PUSER" --uid "$PUID" --gid "$PGID" --gecos "" --home "$HOME" --disabled-password
+	mkdir -p "$HOME"
 	chown --recursive "$PUID:$PGID" "$HOME"
 ) > /dev/null 2>&1
 
