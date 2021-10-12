@@ -1,4 +1,4 @@
-#!/bin/sh -u
+#!/bin/bash -u
 
 export FILEBOT_NODE_DATA="$HOME/node"
 export FILEBOT_NODE_TASK="$1"
