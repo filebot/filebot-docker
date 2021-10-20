@@ -4,6 +4,7 @@
 xpra start \
   --start-child="filebot" \
   --exit-with-children \
-  --bind-tcp="$XPRA_BIND:$XPRA_PORT,auth=$XPRA_AUTH" \
+  --bind-tcp="$XPRA_BIND:$XPRA_PORT" \
+  --tcp-auth="$XPRA_AUTH" \
   --daemon=no \
   $XPRA_OPTS
