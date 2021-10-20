@@ -19,5 +19,4 @@ if [ -f "$FILEBOT_NODE_DATA/environment.sh" ]; then
 fi
 
 
-# --optimize_for_size (Enables optimizations which favor memory size over execution speed.)
-exec node --optimize_for_size "/opt/filebot-node/server/app.js"
+exec node "/opt/filebot-node/server/app.js"
