@@ -7,9 +7,9 @@ inotifywait -m "$1" -e create -e moved_to -e modify --exclude '/[.@]' --format '
 	# file may yield inode/x-empty for new files
 	sleep "$SETTLE_DOWN_TIME"
 
-	# abort if the file has been modified while we were asleep
-	if [[ -n "$(find "$FILE" -type f -newermt "$SETTLE_DOWN_TIME seconds ago" -print -quit)" ]]; then
-		echo "Modified: $FILE"
+	# abort if the file is currently being written (i.e. network copy operations can take minutes or hours)
+	if [[ -n "$(find "$FILE" -type f -newermt "10 seconds ago" -print -quit)" ]]; then
+		echo "Deferred until next time: $FILE"
 		continue
 	fi
 
