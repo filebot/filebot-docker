@@ -17,7 +17,7 @@ docker-node:
 docker-watcher:
 	docker build --rm -t filebot-watcher -f Dockerfile.watcher .
 	mkdir -p input output
-	docker run -it -v ${PWD}:/volume1 -v data:/data filebot-watcher /volume1/input --output /volume1/output
+	docker run -it -v ${PWD}:/volume1 -v data:/data -e SETTLE_DOWN_TIME=5 filebot-watcher /volume1/input --output /volume1/output
 
 docker-xpra:
 	docker build --rm -t filebot-xpra -f Dockerfile.xpra .
