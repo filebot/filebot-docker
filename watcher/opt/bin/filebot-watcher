@@ -9,7 +9,7 @@ inotifywait -m "$1" -e create -e moved_to -e modify --exclude '/[.@]' --format '
 
 	# abort if the file is currently being written (i.e. network copy operations can take minutes or hours)
 	if [[ -n "$(find "$FILE" -type f -newermt "10 seconds ago" -print -quit)" ]]; then
-		echo "Deferred until next time: $FILE"
+		echo "Deferred until next change: $FILE"
 		continue
 	fi
 
