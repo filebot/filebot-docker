@@ -8,7 +8,10 @@ inotifywait -m "$1" -e create -e moved_to -e modify --exclude '/[.@]' --format '
 	sleep "$SETTLE_DOWN_TIME"
 
 	# abort if the file is currently being written (i.e. network copy operations can take minutes or hours)
-	if [ -n "$(find "$1" -type f -newermt "10 seconds ago" -print -quit)" ]; then
+	RECENTLY_MODIFIED_FILES="$(find "$1" -type f -newermt "$SETTLE_DOWN_CHECK" -print -quit)"
+
+	if [ -n "$RECENTLY_MODIFIED_FILES" ]; then
+		echo "$RECENTLY_MODIFIED_FILES was modified less than $SETTLE_DOWN_CHECK"
 		echo "Processing deferred until next change..."
 		continue
 	fi
