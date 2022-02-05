@@ -88,7 +88,7 @@ services:
 
 ## filebot-watcher
 
-The [`filebot-watcher`](https://github.com/filebot/filebot-docker/blob/master/watcher/opt/bin/filebot-watcher) command-line tool watches a given folder and executes the [amc script](https://www.filebot.net/amc.html) on newly added files.
+The [`filebot-watcher`](https://www.filebot.net/forums/viewtopic.php?t=13038) command-line tool watches a given folder and executes the [amc script](https://www.filebot.net/amc.html) on newly added files.
 
 ```bash
 docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot:watcher /volume1/input --output /volume1/output
