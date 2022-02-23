@@ -7,7 +7,7 @@ RUN set -eux \
  && apt-key adv --fetch-keys "https://xpra.org/gpg.asc" \
  && curl -o "/etc/apt/sources.list.d/xpra.list" "https://xpra.org/repos/focal/xpra.list" \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra default-jre zenity openjfx \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra default-jre zenity \
  && mkdir -m 777 -p /tmp/xdg/xpra \
  && ln -sf /usr/lib/xpra/xdg-open /usr/bin/xdg-open \
  && rm -rvf /usr/share/xpra/www/default-settings.* \
