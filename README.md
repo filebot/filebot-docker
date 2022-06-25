@@ -141,13 +141,18 @@ services:
 
 ## How do I activate my license?
 
-You can activate your license by calling `filebot --license T1000.psm` from within the docker container.
+You can activate your license by calling `filebot --license` from within the docker container.
 
 ```bash
+# Read License Key from Console Input
+docker run --rm -it -v data:/data rednoah/filebot --license
+```
+```bash
+# Read License Key from License File
 docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot --license /volume1/T1000.psm
 ```
 
-Your license will then be stored in `-v data:/data` which is the persistent application data folder common to all FileBot docker containers.
+Your license will then be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
 
 
 ## How to do I run the process inside the container as a different user?
