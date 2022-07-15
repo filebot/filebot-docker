@@ -35,4 +35,4 @@ ENV PUSER filebot
 ENV PGROUP filebot
 
 
-ENTRYPOINT ["/opt/bin/run-as-user", "/usr/bin/filebot"]
+ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/filebot"]
