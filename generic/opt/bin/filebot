@@ -3,15 +3,9 @@
 
 # print license activation help for new users
 if [ -f "$HOME/license.txt" ]; then
-	echo 'Hello! Do you need help Getting Started?'
-	echo ''
-	echo 'FAQ:'
-	echo 'https://www.filebot.net/linux/docker.html'
-	echo ''
-	echo 'Read License Key from Console:'
-	echo 'docker run --rm -it -v data:/data rednoah/filebot --license'
-	echo ''
+	cat "/opt/share/activate.txt"
 fi
+
 
 # run as normal user
 exec /usr/bin/filebot "$@"

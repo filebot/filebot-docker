@@ -1,0 +1,13 @@
+
+--------------------------------------------------------------------------------
+
+Hello! Do you need help Getting Started?
+
+# FAQ
+https://www.filebot.net/linux/docker.html
+
+# Read License Key from Console
+docker run --rm -it -v data:/data rednoah/filebot --license
+
+--------------------------------------------------------------------------------
+
