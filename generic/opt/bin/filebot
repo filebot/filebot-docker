@@ -7,5 +7,5 @@ if [ -f "$HOME/license.txt" ]; then
 fi
 
 
-# run as normal user
+# execute filebot with the given arguments
 exec /usr/bin/filebot "$@"
