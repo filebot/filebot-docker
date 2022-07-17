@@ -2,7 +2,7 @@
 
 
 # print license activation help for new users
-if [ -f "$HOME/license.txt" ]; then
+if [ ! -f "$HOME/license.txt" ]; then
 	cat "/opt/share/activate.txt"
 fi
 
