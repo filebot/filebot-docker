@@ -8,4 +8,4 @@ fi
 
 
 # execute filebot with the given arguments
-exec /usr/bin/filebot "$@"
+exec "$@"
