@@ -169,6 +169,16 @@ environment:
 You may use `PUID=0` to run as default `root` user or docker `--user`.
 
 
+## How do I start an interactive shell session inside the container?
+
+You can use the `--entrypoint` option to run `bash` on startup:
+```bash
+$ docker run --rm -it -v $PWD:/volume1 -v data:/data --entrypoint /bin/bash rednoah/filebot
+root@61dcacb8146f:/# filebot -version
+FileBot 4.9.6 (r9125)
+```
+
+
 ## Notes on `--action MOVE` and `--action HARDLINK`
 
 `docker` treats each volume mount as a separate filesystem. Thus, if you are using `--action MOVE` or `--action HARDLINK` then the input path and the output path must be on the same volume mount. If you process files across volume mounts, then `--action HARDLINK` will fail with `I/O error: cross-device link`, and `--action MOVE` and `--action DUPLICATE` will resort to physically copying files.
