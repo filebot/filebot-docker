@@ -172,7 +172,7 @@ You may use `PUID=0` to run as default `root` user or docker `--user`.
 ## How do I start an interactive shell session inside the container?
 
 You can use the `--entrypoint` option to run `bash` on startup:
-```bash
+```
 $ docker run --rm -it -v $PWD:/volume1 -v data:/data --entrypoint /bin/bash rednoah/filebot
 root@61dcacb8146f:/# filebot -version
 FileBot 4.9.6 (r9125)
