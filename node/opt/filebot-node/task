@@ -4,6 +4,13 @@ export FILEBOT_NODE_DATA="$HOME/node"
 export FILEBOT_NODE_TASK="$1"
 
 
+# sanity check
+if [ ! -f "$FILEBOT_NODE_DATA/task/$FILEBOT_NODE_TASK.args" ]; then
+	echo "$0: Task $FILEBOT_NODE_TASK does not exist"
+	exit 1
+fi
+
+
 # import user environment
 if [ -f "$FILEBOT_NODE_DATA/environment.sh" ]; then
 	source "$FILEBOT_NODE_DATA/environment.sh"
