@@ -23,6 +23,10 @@ docker-xpra:
 	docker build --rm -t filebot-xpra -f Dockerfile.xpra .
 	docker run -it -v ${PWD}:/volume1 -v data:/data -p 5454:5454 filebot-xpra
 
+docker-shell:
+	docker build --rm -t filebot -f Dockerfile .
+	docker run -e PUID=1000 -e PGID=100 -it -v ${PWD}:/volume1 -v data:/data --entrypoint /bin/bash filebot
+
 clean:
 	git reset --hard
 	git pull

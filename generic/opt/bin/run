@@ -6,6 +6,8 @@ if [ ! -f "$HOME/license.txt" ]; then
 	cat "/opt/share/activate.txt"
 fi
 
+# set working directory
+cd "$HOME"
 
 # execute filebot with the given arguments
 exec "$@"

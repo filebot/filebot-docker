@@ -14,7 +14,7 @@ ENV FILEBOT_NODE_HOME /opt/filebot-node
 RUN set -eux \
  ## ** install dependencies
  && curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
- && apt-get install -y nodejs \
+ && DEBIAN_FRONTEND=noninteractive apt install -y nodejs \
  && rm -rf /var/lib/apt/lists/* \
  ## ** fetch generic package
  && curl -L -o /tmp/filebot-node.tar.xz "$FILEBOT_NODE_URL" \
@@ -37,4 +37,4 @@ ENV FILEBOT_NODE_HTTP_PORT 5452
 
 EXPOSE $FILEBOT_NODE_HTTP_PORT
 
-ENTRYPOINT ["/opt/bin/run-as-user", "/opt/filebot-node/start"]
+ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/run", "/opt/filebot-node/start"]
