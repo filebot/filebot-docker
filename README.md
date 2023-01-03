@@ -56,7 +56,7 @@ Once the [FileBot Node Service](https://github.com/filebot/filebot-node) is runn
 
 You may secure the [FileBot Node Service](https://github.com/filebot/filebot-node) by using `HTTPS` and `BASIC` authentication:
 ```bash
-docker run --rm -it -v $PWD:/volume1 -v data:/data -p 5452:5452 -e FILEBOT_NODE_AUTH=BASIC -e FILEBOT_NODE_AUTH_USER=alice -e FILEBOT_NODE_AUTH_PASS=wxy87rFb -p 5453:5453 -v /etc/ssl:/etc/ssl:ro -e FILEBOT_NODE_HTTPS=YES -e FILEBOT_NODE_HTTPS_PORT=5453 -e FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key -e FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt rednoah/filebot:node
+docker run --rm -it -v $PWD:/volume1 -v data:/data -p 5452:5452 -e FILEBOT_NODE_AUTH=BASIC -e FILEBOT_NODE_AUTH_USER=YOUR_USERNAME -e FILEBOT_NODE_AUTH_PASS=YOUR_PASSWORD -p 5453:5453 -v /etc/ssl:/etc/ssl:ro -e FILEBOT_NODE_HTTPS=YES -e FILEBOT_NODE_HTTPS_PORT=5453 -e FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key -e FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt rednoah/filebot:node
 ```
 
 ```yml
@@ -76,8 +76,8 @@ services:
       - 5453:5453
     environment:
       - FILEBOT_NODE_AUTH=BASIC
-      - FILEBOT_NODE_AUTH_USER=alice
-      - FILEBOT_NODE_AUTH_PASS=wxy87rFb
+      - FILEBOT_NODE_AUTH_USER=YOUR_USERNAME
+      - FILEBOT_NODE_AUTH_PASS=YOUR_PASSWORD
       - FILEBOT_NODE_HTTPS=YES
       - FILEBOT_NODE_HTTPS_PORT=5453
       - FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key
@@ -115,7 +115,7 @@ services:
 Run the [FileBot Desktop application](https://www.filebot.net/getting-started/) via [xpra](https://xpra.org/) and make it remotely available at [http://localhost:5454/](http://localhost:5454/).
 
 ```bash
-docker run --rm -it -v $PWD:/volume1 -v data:/data -p 5454:5454 rednoah/filebot:xpra
+docker run --rm -it -v $PWD:/volume1 -v data:/data -p 5454:5454 -e XPRA_AUTH="password:value=YOUR_PASSWORD" rednoah/filebot:xpra
 ```
 
 ```yml
@@ -131,6 +131,8 @@ services:
       - ${HOME}/path/to/files:/volume1
     ports:
       - 5454:5454
+    environment:
+      - XPRA_AUTH=password:value=YOUR_PASSWORD
 ```
 ![Xpra Remote Desktop](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra.png)
 
