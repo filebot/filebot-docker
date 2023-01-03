@@ -135,7 +135,7 @@ services:
       - XPRA_AUTH=password:value=YOUR_PASSWORD
 ```
 ![Xpra Remote Desktop](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra.png)
-If you have a `Reverse Proxy` that takes care of SSL and authentication, then you can disable authentication via `-e XPRA_AUTH=none` and limit network access to the `localhost` via `-e XPRA_BIND=127.0.0.1`.
+If you have a `Reverse Proxy` that takes care of SSL and authentication, then you can disable authentication via `-e XPRA_AUTH=none` and disable remote access via `-e XPRA_BIND=127.0.0.1`.
 
 
 
