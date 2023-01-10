@@ -16,6 +16,14 @@ RUN set -eux \
  && rm -rvf /usr/share/xpra/www/default-settings.* \
  && rm -rvf /var/lib/apt/lists/*
 
+# silence xpra startup error messages
+RUN set -eux \
+ && chmod 777 /run/user \
+ && mkdir /run/xpra \
+ && chmod 775 /run/xpra \
+ && mkdir /etc/xdg/menus \
+ && echo "<Menu/>" > /etc/xdg/menus/kde-debian-menu.menu
+
 # install custom launcher scripts
 COPY xpra /
 

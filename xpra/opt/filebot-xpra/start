@@ -1,6 +1,14 @@
-#!/bin/sh -x
+#!/bin/sh
 
 
+# silence xpra startup error messages
+export XDG_RUNTIME_DIR="/tmp"
+
+mkdir -m 700 -p "/tmp/xpra/0"
+mkdir -m 700 -p "/run/user/$PUID/xpra"
+
+
+# run xpra service
 xpra start \
   --start-child="filebot" \
   --exit-with-children \
