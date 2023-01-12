@@ -17,4 +17,4 @@ export HOME="$HOME/$PUSER"
 ) > /dev/null 2>&1
 
 # run as normal user
-exec sudo --user "#$PUID" --group "#$PGID" --non-interactive --preserve-env -- "$@"
+sudo --user "#$PUID" --group "#$PGID" --non-interactive --preserve-env -- "$@"
