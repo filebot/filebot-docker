@@ -9,7 +9,7 @@ ENV FILEBOT_VERSION 4.9.6
 RUN set -eux \
  ## ** install dependencies
  && apt update \
- && DEBIAN_FRONTEND=noninteractive apt install -y openjdk-17-jre-headless libjna-java mediainfo libchromaprint-tools unrar p7zip-full p7zip-rar xz-utils mkvtoolnix atomicparsley sudo gnupg curl file inotify-tools \
+ && DEBIAN_FRONTEND=noninteractive apt install -y openjdk-17-jre-headless libjna-java mediainfo libchromaprint-tools unrar p7zip-full p7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley sudo gnupg curl file inotify-tools \
  && rm -rvf /var/lib/apt/lists/* \
  ## ** FIX libjna-java (see https://bugs.launchpad.net/ubuntu/+source/libjna-java/+bug/2000863)
  && ln -s /usr/lib/*-linux-gnu*/jni /usr/lib/jni
