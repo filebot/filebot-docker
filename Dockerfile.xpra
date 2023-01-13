@@ -4,8 +4,8 @@ LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
 RUN set -eux \
- && apt update \
- && DEBIAN_FRONTEND=noninteractive apt install -y ca-certificates software-properties-common \
+ && apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y ca-certificates software-properties-common \
  && add-apt-repository universe \
  && curl -o "/usr/share/keyrings/xpra-2022.gpg" https://xpra.org/xpra-2022.gpg \
  && curl -o "/etc/apt/sources.list.d/xpra.list" "https://xpra.org/repos/jammy/xpra.list" \

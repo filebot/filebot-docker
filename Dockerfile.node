@@ -14,7 +14,8 @@ ENV FILEBOT_NODE_HOME /opt/filebot-node
 RUN set -eux \
  ## ** install dependencies
  && curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
- && DEBIAN_FRONTEND=noninteractive apt install -y nodejs \
+ && apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs \
  && rm -rf /var/lib/apt/lists/* \
  ## ** fetch generic package
  && curl -L -o /tmp/filebot-node.tar.xz "$FILEBOT_NODE_URL" \
