@@ -15,4 +15,4 @@ xpra start \
   --bind-tcp="$XPRA_BIND:$XPRA_PORT" \
   --tcp-auth="$XPRA_AUTH" \
   --daemon=no \
-  $XPRA_OPTS 2>&1 | grep -v -e 'pointer device emulation using XTest' -e 'no uinput module' -e '.X11-unix will not be created' -e 'created unix domain socket' -e 'cannot create group socket' -e 'Errno 13' -e 'watching for applications menu changes' -e '/usr/share/applications' -e '/usr/share/xpra/www' -e '/tmp/xpra/0/server.pid' -e 'ibus-daemon'
+  $XPRA_OPTS 2>&1 | grep -v -e 'pointer device emulation using XTest' -e 'no uinput module' -e '.X11-unix will not be created' -e 'created unix domain socket' -e 'cannot create group socket' -e 'Errno 13' -e 'watching for applications menu changes' -e '/usr/share/applications' -e '/usr/share/xpra/www' -e '/tmp/xpra/0/server.pid' -e 'ibus-daemon' -e 'start menu entries'
