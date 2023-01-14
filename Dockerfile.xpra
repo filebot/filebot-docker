@@ -11,8 +11,11 @@ RUN set -eux \
  && curl -o "/etc/apt/sources.list.d/xpra.list" "https://xpra.org/repos/jammy/xpra.list" \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-17-jre zenity xdg-utils \
+ ## ** fix xdg-open behaviour
+ && rm -rvf /usr/share/applications/* \
+ && rm -rvf /usr/share/file-manager/actions/* \
+ && rm -rvf /usr/share/kservices5/ServiceMenus/* \
  && mkdir -m 777 -p /tmp/xdg/xpra \
- && ln -sf /usr/lib/xpra/xdg-open /usr/bin/xdg-open \
  && rm -rvf /usr/share/xpra/www/default-settings.* \
  && rm -rvf /var/lib/apt/lists/* \
  ## ** silence xpra startup error messages
@@ -21,6 +24,12 @@ RUN set -eux \
  && chmod 775 /run/xpra \
  && mkdir /etc/xdg/menus \
  && echo "<Menu/>" > /etc/xdg/menus/kde-debian-menu.menu
+
+RUN set -eux \
+ && apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y nautilus gedit \
+ && rm -rvf /var/lib/apt/lists/*
+
 
 # install custom launcher scripts
 COPY xpra /
