@@ -27,7 +27,7 @@ RUN set -eux \
 
 RUN set -eux \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y nautilus gedit \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y nautilus gedit trash-cli \
  && rm -rvf /var/lib/apt/lists/*
 
 
