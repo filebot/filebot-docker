@@ -145,7 +145,6 @@ If you have a `Reverse Proxy` that takes care of SSL and authentication, then yo
 ## How do I activate my license?
 
 You can activate your license by calling `filebot --license` from within the docker container.
-
 ```bash
 # Read License Key from Console Input
 docker run --rm -it -v data:/data rednoah/filebot --license
@@ -154,18 +153,20 @@ docker run --rm -it -v data:/data rednoah/filebot --license
 # Read License Key from License File
 docker run --rm -it -v $PWD:/volume1 -v data:/data rednoah/filebot --license /volume1/T1000.psm
 ```
-
 Your license will then be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
 
 
 ## How do I enter my OpenSubtitles login details?
 
 You can enter your OpenSubtitles login details by calling `filebot -script fn:configure` from within the docker container.
-
+```bash
+# Read login details from Console Input
+docker run --rm -it -v data:/data rednoah/filebot -script fn:configure
 ```
+```bash
+# Pass login details via Command-line Arguments
 docker run --rm -it -v data:/data rednoah/filebot -script fn:configure --def osdbUser=USERNAME --def osdbPwd=PASSWORD
 ```
-
 Your user settings will be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers.
 
 
