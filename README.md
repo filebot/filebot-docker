@@ -166,7 +166,7 @@ You can enter your OpenSubtitles login details by calling `filebot -script fn:co
 docker run --rm -it -v data:/data rednoah/filebot -script fn:configure --def osdbUser=USERNAME --def osdbPwd=PASSWORD
 ```
 
-Your user settings will be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
+Your user settings will be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers.
 
 
 ## How to do I run the process inside the container as a different user?
