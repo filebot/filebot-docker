@@ -3,7 +3,7 @@ FROM rednoah/filebot
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_VERSION 5.0.0
+ENV FILEBOT_VERSION 5.0.1
 ENV FILEBOT_URL https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}_universal.deb
 
 
