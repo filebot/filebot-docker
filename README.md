@@ -22,7 +22,6 @@ services:
   filebot:
     container_name: filebot
     image: rednoah/filebot
-    restart: unless-stopped
     volumes:
       - ${HOME}/FileBot:/data
       - ${HOME}/path/to/files:/volume1
