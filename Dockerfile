@@ -4,7 +4,7 @@ LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
 ENV FILEBOT_VERSION 5.0.3
-
+ENV FILEBOT_RELEASE 2022-05-22
 
 RUN set -eux \
  ## ** install dependencies
