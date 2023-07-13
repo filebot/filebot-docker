@@ -1,7 +1,7 @@
 name: docker build filebot-beta
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
   schedule:
       - cron: '0 0 * * 5'
   workflow_run:
