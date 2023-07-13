@@ -2,6 +2,14 @@ name: docker build filebot-beta
 
 on:
   workflow_dispatch:
+    inputs:
+      revision:
+        description: 'Revision'
+        required: true
+        type: 'choice'
+        default: 'latest'
+        options:
+        - 'latest'
   schedule:
       - cron: '0 0 * * 5'
   workflow_run:
