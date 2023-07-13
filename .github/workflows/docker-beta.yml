@@ -10,7 +10,7 @@ on:
         options:
         - 'latest'
   schedule:
-      - cron: '0 0 * * 5'
+      - cron: '0 0 8 * *'
   workflow_run:
     workflows:
       - 'docker build filebot-xpra'
