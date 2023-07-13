@@ -18,7 +18,4 @@ RUN set -eux \
  && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
 
 
-ENV FILEBOT_REVISION "$(filebot -version)"
-
-
 ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/run", "/opt/filebot-xpra/start"]
