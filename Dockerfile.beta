@@ -3,6 +3,10 @@ FROM rednoah/filebot:xpra
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
+ENV FILEBOT_VERSION 5.1.0
+ENV FILEBOT_URL https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}_universal.deb
+
+
 RUN set -eux \
  ## ** uninstall stable release
  && DEBIAN_FRONTEND=noninteractive apt-get purge -y filebot \
@@ -14,7 +18,7 @@ RUN set -eux \
  && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
 
 
-ENV FILEBOT_VERSION "$(filebot -version)"
+ENV FILEBOT_REVISION "$(filebot -version)"
 
 
 ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/run", "/opt/filebot-xpra/start"]
