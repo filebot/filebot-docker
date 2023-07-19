@@ -5,12 +5,13 @@ LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 RUN set -eux \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y ca-certificates software-properties-common \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https software-properties-common \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y ca-certificates \
  && add-apt-repository universe \
- && curl -o "/usr/share/keyrings/xpra-2022.gpg" https://xpra.org/xpra-2022.gpg \
- && curl -o "/etc/apt/sources.list.d/xpra.list" "https://xpra.org/repos/jammy/xpra.list" \
+ && curl -o /usr/share/keyrings/xpra.asc https://xpra.org/xpra.asc \
+ && curl -o /etc/apt/sources.list.d/xpra.sources https://xpra.org/repos/jammy/xpra.sources \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-17-jre zenity xdg-utils \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-17-jre zenity xdg-utils nautilus gedit trash-cli \
  ## ** fix xdg-open behaviour
  && rm -rvf /usr/share/applications/* \
  && rm -rvf /usr/share/file-manager/actions/* \
@@ -23,12 +24,8 @@ RUN set -eux \
  && mkdir /run/xpra \
  && chmod 775 /run/xpra \
  && mkdir /etc/xdg/menus \
- && echo "<Menu/>" > /etc/xdg/menus/kde-debian-menu.menu
-
-RUN set -eux \
- && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y nautilus gedit trash-cli \
- && rm -rvf /var/lib/apt/lists/*
+ && echo "<Menu/>" > /etc/xdg/menus/kde-debian-menu.menu \
+ && echo "<Menu/>" > /etc/xdg/menus/debian-menu.menu
 
 
 # install custom launcher scripts
