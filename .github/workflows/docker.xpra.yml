@@ -1,7 +1,6 @@
 name: docker build filebot-xpra
 
 on:
-  workflow_dispatch:
   workflow_run:
     workflows:
       - 'docker build filebot'
