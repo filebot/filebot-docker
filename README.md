@@ -154,6 +154,7 @@ docker run --rm -it -v "$PWD:/volume1" -v data:/data rednoah/filebot --license /
 ```
 Your license will then be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
 
+If you use `-e PUID` or `-e PGID` to run `filebot` with a different UID then you must use the same `-e PUID` or `-e PGID` environment variables when calling `filebot --license` to install the your license key into the correct user-specific application data folder.
 
 ## How do I enter my OpenSubtitles login details?
 
