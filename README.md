@@ -188,8 +188,8 @@ You may use `PUID=0` to run as default `root` user or docker `--user`.
 
 You can use the `--entrypoint` option to run `bash` on startup:
 ```
-$ docker run --rm -it -v "$PWD:/volume1" -v data:/data --entrypoint /bin/bash rednoah/filebot
-root@61dcacb8146f:/# filebot -version
+$ docker run --rm -it -v "$PWD:/volume1" -v data:/data -e PUID=1000 -e PGID=1000 --entrypoint /opt/bin/run-as-user rednoah/filebot bash
+filebot@dcc9dbeac18d:/$ filebot -version
 FileBot 4.9.6 (r9125)
 ```
 
