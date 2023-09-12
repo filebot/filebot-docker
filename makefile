@@ -1,6 +1,6 @@
 filebot:
 	docker build --rm -t filebot -f Dockerfile .
-	docker run -e PUID=1000 -e PGID=100 -it -v ${PWD}:/volume1 -v data:/data filebot -script fn:sysinfo
+	docker run -it -v ${PWD}:/volume1 -v data:/data filebot -script fn:sysinfo
 
 filebot-node:
 	docker build --rm -t filebot-node -f Dockerfile.node .
@@ -25,11 +25,11 @@ filebot-graalvm:
 
 filebot-beta:
 	docker build --rm -t filebot-beta -f Dockerfile.beta .
-	docker run -e PUID=1000 -e PGID=100 -it -v ${PWD}:/volume1 -v data:/data filebot-beta -script fn:sysinfo
+	docker run -it -v ${PWD}:/volume1 -v data:/data filebot-beta -script fn:sysinfo
 
 filebot-shell:
 	docker build --rm -t filebot -f Dockerfile .
-	docker run -e PUID=1000 -e PGID=100 -it -v ${PWD}:/volume1 -v data:/data --entrypoint /bin/bash filebot
+	docker run -it -v ${PWD}:/volume1 -v data:/data --entrypoint /bin/bash filebot
 
 clean:
 	git reset --hard
