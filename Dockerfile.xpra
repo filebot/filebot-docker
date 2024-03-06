@@ -15,7 +15,7 @@ RUN set -eux \
  ## ** fix xdg-open behaviour
  && rm -rvf /usr/share/applications/* \
  && rm -rvf /usr/share/file-manager/actions/* \
- && rm -rvf /usr/share/kservices5/ServiceMenus/* \
+ && rm -rvf /usr/share/kio/servicemenus/* /usr/share/kservices5/ServiceMenus/* \
  && mkdir -m 777 -p /tmp/xdg/xpra \
  && rm -rvf /usr/share/xpra/www/default-settings.* \
  && rm -rvf /var/lib/apt/lists/* \
