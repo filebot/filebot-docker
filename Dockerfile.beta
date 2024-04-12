@@ -12,7 +12,7 @@ RUN set -eux \
 
 
 # build trigger and cache buster
-ENV FILEBOT_REVISION r10225
+ENV FILEBOT_REVISION r10227
 
 
 ENV FILEBOT_VERSION 5.1.3
