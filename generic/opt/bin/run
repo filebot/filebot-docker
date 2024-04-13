@@ -3,7 +3,7 @@
 
 # print license activation help for new users
 if [ ! -f "$HOME/license.txt" ]; then
-	source "/opt/share/activate.sh"
+	/opt/share/activate.sh
 fi
 
 # set working directory
