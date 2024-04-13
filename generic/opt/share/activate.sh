@@ -17,7 +17,7 @@ docker run --rm -it -v data:/data -e PUID=$(id -u) -e PGID=$(id -g) rednoah/file
 
 
 if [ "$(id -u)" -eq 0 ]; then
-	echo -e '
+	echo '
 	\033[38;5;202m
 	!!! YOU ARE RUNNING AS ROOT AND NOT AS NORMAL USER !!!
 	\033[0m
@@ -25,7 +25,7 @@ if [ "$(id -u)" -eq 0 ]; then
 fi
 
 
-echo -e "
+echo "
 \033[38;5;40m
 USER=$(id -un)($(id -u))
 HOME=$HOME
