@@ -22,7 +22,7 @@ RUN set -eux \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends filebot \
  && rm -rvf /var/lib/apt/lists/* \
  ## ** apply custom application configuration
- && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/share/filebot/bin/filebot.sh
+ && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Duser.home="$HOME" -Dapplication.deployment=docker/g' /usr/share/filebot/bin/filebot.sh
 
 # install custom launcher scripts
 COPY generic /
