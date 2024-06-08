@@ -21,9 +21,9 @@ RUN set -eux \
  && rm -rvf /var/lib/apt/lists/* \
  ## ** silence xpra startup error messages
  && chmod 777 /run/user \
- && mkdir /run/xpra \
+ && mkdir -m 777 -p /run/xpra \
  && chmod 775 /run/xpra \
- && mkdir /etc/xdg/menus \
+ && mkdir -m 777 -p /etc/xdg/menus \
  && echo "<Menu/>" > /etc/xdg/menus/kde-debian-menu.menu \
  && echo "<Menu/>" > /etc/xdg/menus/debian-menu.menu
 
