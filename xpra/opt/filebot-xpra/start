@@ -15,4 +15,37 @@ xpra start \
   --bind-tcp="$XPRA_BIND:$XPRA_PORT" \
   --tcp-auth="$XPRA_AUTH" \
   --daemon=no \
-  $XPRA_OPTS 2>&1 | grep -v -e 'pointer device emulation using XTest' -e 'no uinput module' -e '.X11-unix will not be created' -e 'created unix domain socket' -e 'cannot create group socket' -e 'Errno 13' -e 'watching for applications menu changes' -e '/usr/share/applications' -e '/usr/share/xpra/www' -e '/tmp/xpra/0/server.pid' -e 'ibus-daemon' -e 'start menu entries'
+  $XPRA_OPTS 2>&1 \
+| grep -v \
+  -e 'pointer device emulation using XTest' \
+  -e 'no uinput module' \
+  -e 'missing audio module' \
+  -e '.X11-unix will not be created' \
+  -e 'created unix domain socket' \
+  -e '/run/user/1000/xpra' \
+  -e '/home/ubuntu/.xpra' \
+  -e '/tmp/xpra/0/socket' \
+  -e 'created abstract sockets' \
+  -e '@xpra/0' \
+  -e 'cannot create group socket' \
+  -e 'Errno 13' \
+  -e 'watching for applications menu changes' \
+  -e '/usr/share/applications' \
+  -e '/usr/share/xpra/www' \
+  -e '/tmp/xpra/0/server.pid' \
+  -e 'ibus-daemon' \
+  -e 'D-Bus notification forwarding is available' \
+  -e 'start menu entries' \
+  -e 'No OpenGL_accelerate module loaded' \
+  -e 'xkbcomp' \
+  -e 'Could not resolve keysym' \
+  -e 'DeprecationWarning' \
+  -e '_stop_event' \
+  -e 'webcam forwarding is disabled' \
+  -e 'video4linux' \
+  -e 'v4l2loopback' \
+  -e 'webcam' \
+  -e 'lpinfo command failed' \
+  -e '/usr/sbin/lpinfo' \
+  -e 'printer forwarding enabled' \
+  -e 'IPv6 loopback address is not supported'
