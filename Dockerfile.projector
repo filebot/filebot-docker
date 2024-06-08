@@ -1,0 +1,25 @@
+FROM rednoah/filebot
+
+LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
+
+
+RUN set -eux \
+ && curl -fsSL -o projector-server.zip https://github.com/JetBrains/projector-server/releases/download/v1.8.1/projector-server-v1.8.1.zip \
+ && unzip projector-server.zip -d /opt \
+ && mv -v /opt/projector-server-1.8.1 /opt/projector-server \
+ && rm -rvf projector-server.zip
+
+RUN set -eux \
+ && ( [ $(uname -m) = 'aarch64' ] && curl -fsSL -o jbr.tar.gz https://cache-redirector.jetbrains.com/intellij-jbr/jbr_jcef-17.0.11-linux-aarch64-b1207.24.tar.gz ) || ( [ $(uname -m) = 'x86_64' ] && curl -fsSL -o jbr.tar.gz https://cache-redirector.jetbrains.com/intellij-jbr/jbr_jcef-17.0.11-linux-x64-b1207.24.tar.gz ) \
+ && mkdir -p /opt/jbr \
+ && tar -xvzf jbr.tar.gz --strip-components 1 -C /opt/jbr \
+ && rm -rv jbr.tar.gz
+
+
+# install custom launcher scripts
+COPY projector /
+
+
+EXPOSE 8887
+
+ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/run", "/opt/filebot-projector/start"]

@@ -15,6 +15,10 @@ filebot-xpra:
 	docker build --rm -t filebot-xpra -f Dockerfile.xpra .
 	docker run -it -v ${PWD}:/volume1 -v data:/data -p 5454:5454 filebot-xpra
 
+filebot-projector:
+	docker build --rm -t filebot-projector -f Dockerfile.projector .
+	docker run -it -v data:/data -p 8887:8887 filebot-projector --mode Episodes
+
 filebot-alpine:
 	docker build --rm -t filebot-alpine -f Dockerfile.alpine .
 	docker run -it -v ${PWD}:/volume1 -v data:/data filebot-alpine -script fn:sysinfo
