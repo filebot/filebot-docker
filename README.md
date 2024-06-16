@@ -185,7 +185,10 @@ environment:
   - PUID=1000
   - PGID=1000
 ```
-You may use `PUID=0` to run as default `root` user or docker `--user`.
+You may use `PUID=0` to run as default `root` user or docker `--user`:
+```
+docker run --rm -it -v data:/data -e PUID=0 -e PGID=0 rednoah/filebot -script fn:sysinfo
+```
 
 
 ## How do I start an interactive shell session inside the container?
