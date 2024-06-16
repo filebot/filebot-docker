@@ -186,7 +186,7 @@ environment:
   - PGID=1000
 ```
 You may use `PUID=0` to run as default `root` user or docker `--user`:
-```
+```bash
 docker run --rm -it -v data:/data -e PUID=0 -e PGID=0 rednoah/filebot -script fn:sysinfo
 ```
 
