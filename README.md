@@ -12,6 +12,7 @@ Docker images for [FileBot](https://www.filebot.net/).
 The [`filebot`](https://www.filebot.net/cli.html) command-line tool.
 
 ```bash
+# Run `filebot -script fn:sysinfo`
 docker run --rm -it -v "$PWD:/volume1" -v data:/data rednoah/filebot -script fn:sysinfo
 ```
 
