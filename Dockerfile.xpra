@@ -9,7 +9,7 @@ RUN set -eux \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y ca-certificates \
  && add-apt-repository universe \
  && curl -o /usr/share/keyrings/xpra.asc https://xpra.org/xpra.asc \
- && curl -o /etc/apt/sources.list.d/xpra.sources https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/noble/xpra.sources \
+ && curl -o /etc/apt/sources.list.d/xpra.sources https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/jammy/xpra.sources \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-17-jre zenity xdg-utils nautilus gedit trash-cli \
  ## ** fix xdg-open behaviour
