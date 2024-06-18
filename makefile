@@ -17,7 +17,7 @@ filebot-xpra:
 
 filebot-projector:
 	docker build --rm -t filebot-projector -f Dockerfile.projector .
-	docker run -it -v data:/data -p 8887:8887 filebot-projector --mode Episodes
+	docker run -it -v data:/data -p 8887:8887 filebot-projector
 
 filebot-alpine:
 	docker build --rm -t filebot-alpine -f Dockerfile.alpine .

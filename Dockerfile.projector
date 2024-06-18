@@ -1,19 +1,16 @@
-FROM rednoah/filebot
+FROM rednoah/filebot:beta
 
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
 RUN set -eux \
- && curl -fsSL -o projector-server.zip https://github.com/JetBrains/projector-server/releases/download/v1.8.1/projector-server-v1.8.1.zip \
- && unzip projector-server.zip -d /opt \
- && mv -v /opt/projector-server-1.8.1 /opt/projector-server \
- && rm -rvf projector-server.zip
-
-RUN set -eux \
- && ( [ $(uname -m) = 'aarch64' ] && curl -fsSL -o jbr.tar.gz https://cache-redirector.jetbrains.com/intellij-jbr/jbr_jcef-17.0.11-linux-aarch64-b1207.24.tar.gz ) || ( [ $(uname -m) = 'x86_64' ] && curl -fsSL -o jbr.tar.gz https://cache-redirector.jetbrains.com/intellij-jbr/jbr_jcef-17.0.11-linux-x64-b1207.24.tar.gz ) \
- && mkdir -p /opt/jbr \
- && tar -xvzf jbr.tar.gz --strip-components 1 -C /opt/jbr \
- && rm -rv jbr.tar.gz
+ ## ** install projector
+ && curl -fsSL -o /tmp/projector-server.zip https://github.com/JetBrains/projector-server/releases/download/v1.8.1/projector-server-v1.8.1.zip \
+ && unzip /tmp/projector-server.zip -d /opt \
+ && mv -v /opt/projector-server-* /opt/projector-server \
+ && rm -rvf /opt/projector-server/lib/slf4j-* /opt/projector-server/bin /tmp/projector-server.zip \
+ ## ** apply custom application configuration
+ && sed -i 's|-jar "$FILEBOT_HOME/jar/filebot.jar"|-classpath "/opt/projector-server/lib/*:/usr/share/filebot/jar/*" -Djdk.attach.allowAttachSelf=true -Dorg.jetbrains.projector.server.enable=true -Dorg.jetbrains.projector.server.classToLaunch=net.filebot.Main org.jetbrains.projector.server.ProjectorLauncher|g; s|-XX:+DisableAttachMechanism|-Dnet.filebot.glass.effect=none -Dorg.slf4j.simpleLogger.defaultLogLevel=WARN --add-opens=java.desktop/sun.font=ALL-UNNAMED --add-opens=java.desktop/java.awt=ALL-UNNAMED --add-opens=java.desktop/sun.java2d=ALL-UNNAMED --add-opens=java.desktop/java.awt.peer=ALL-UNNAMED --add-opens=java.desktop/sun.awt.image=ALL-UNNAMED --add-opens=java.desktop/java.awt.dnd.peer=ALL-UNNAMED --add-opens=java.desktop/java.awt.image=ALL-UNNAMED|g' /usr/bin/filebot
 
 
 # install custom launcher scripts
