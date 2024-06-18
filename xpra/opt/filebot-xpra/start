@@ -18,8 +18,15 @@ xpra start \
   $XPRA_OPTS 2>&1 \
 | grep -v \
   -e 'pointer device emulation using XTest' \
-  -e 'no uinput module' \
+  -e 'uinput' \
   -e 'missing audio module' \
+  -e 'failed to choose pdev' \
+  -e 'failed to create drisw screen' \
+  -e 'some GStreamer elements are missing' \
+  -e 'vah264lpenc' \
+  -e 'gtk_widget_realize' \
+  -e 'encoding failed' \
+  -e 'all the codecs have failed' \
   -e '.X11-unix will not be created' \
   -e 'created unix domain socket' \
   -e '/run/user/1000/xpra' \
