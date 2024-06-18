@@ -12,7 +12,7 @@ RUN set -eux \
 
 
 # build trigger and cache buster
-ENV FILEBOT_REVISION r10323-projector
+ENV FILEBOT_REVISION r10324
 
 
 ENV FILEBOT_VERSION 5.1.4
@@ -26,8 +26,10 @@ RUN set -eux \
  && curl -o /tmp/filebot.deb "https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}_universal.deb" \
  && dpkg -i /tmp/filebot.deb \
  && rm -v /tmp/filebot.deb \
+ ## ** generate CDS archive
+ && java -Xshare:dump -XX:SharedClassListFile="/usr/share/filebot/jsa/classes.jsa.lst" -XX:SharedArchiveFile="/usr/share/filebot/jsa/classes.jsa" -jar "/usr/share/filebot/jar/filebot.jar" \
  ## ** apply custom application configuration
- && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
+ && sed -i 's|APP_DATA=.*|APP_DATA="$HOME"|g; s|-Dapplication.deployment=deb|-Dapplication.deployment=docker -Duser.home="$HOME" -XX:SharedArchiveFile=/usr/share/filebot/jsa/classes.jsa|g' /usr/bin/filebot
 
 
 ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/run", "/opt/filebot-xpra/start"]
