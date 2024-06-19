@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/ file:///usr/share/openbox/menu.xsd">
+	<menu id="root-menu" label="Openbox 3">
+		<item label="FileBot">
+			<action name="Execute">
+				<execute>/usr/bin/filebot</execute>
+			</action>
+		</item>
+		<item label="Files">
+			<action name="Execute">
+				<execute>/usr/bin/nautilus</execute>
+			</action>
+		</item>
+		<item label="Terminal">
+			<action name="Execute">
+				<execute>/usr/bin/gnome-terminal</execute>
+			</action>
+		</item>
+	</menu>
+</openbox_menu>

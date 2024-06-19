@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_config xmlns="http://openbox.org/3.4/rc">
+	<theme>
+		<name>Onyx</name>
+		<titleLayout>NLMC</titleLayout>
+	</theme>
+	<applications>
+		<application name="net-filebot-Main">
+			<maximized>true</maximized>
+		</application>
+	</applications>
+</openbox_config>
