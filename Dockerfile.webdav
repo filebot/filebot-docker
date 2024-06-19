@@ -26,9 +26,9 @@ ENV PASSWORD ""
 
 ENV ROOT /volume1
 ENV HOST localhost
-ENV PORT 80
+ENV PORT 8080
 
 
-EXPOSE 80/tcp
+EXPOSE 8080
 
 ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/httpd"]
