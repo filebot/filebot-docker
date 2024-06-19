@@ -1,0 +1,34 @@
+FROM httpd:2.4.59
+
+LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
+
+
+RUN set -eux \
+ && apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install sudo \
+ && rm -rvf /var/lib/apt/lists/*
+
+
+COPY webdav /
+
+
+ENV HOME /data
+ENV LANG C.UTF-8
+
+ENV PUID 1000
+ENV PGID 1000
+ENV PUSER httpd
+ENV PGROUP httpd
+
+ENV REALM "WebDAV"
+ENV USERNAME "anonymous"
+ENV PASSWORD ""
+
+ENV ROOT /volume1
+ENV HOST localhost
+ENV PORT 80
+
+
+EXPOSE 80/tcp
+
+ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/httpd"]

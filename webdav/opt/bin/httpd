@@ -1,0 +1,12 @@
+#!/bin/sh -u
+
+cd "$HOME"
+
+# prepare the lock database
+touch "DavLock"
+
+# prepare the passwd file
+echo "$USERNAME:$REALM:$(echo -n "$USERNAME:$REALM:$PASSWORD" | md5sum | cut -d' ' -f1)" > "user.passwd"
+
+# start http server
+exec /usr/local/apache2/bin/httpd -D FOREGROUND

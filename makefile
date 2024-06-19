@@ -19,6 +19,10 @@ filebot-projector:
 	docker build --rm -t filebot-projector -f Dockerfile.projector .
 	docker run -it -v data:/data -p 8887:8887 filebot-projector
 
+filebot-webdav:
+	docker build --rm -t filebot-webdav -f Dockerfile.webdav .
+	docker run -it -v ${PWD}:/volume1 -v data:/data -p 8080:80 filebot-webdav
+
 filebot-alpine:
 	docker build --rm -t filebot-alpine -f Dockerfile.alpine .
 	docker run -it -v ${PWD}:/volume1 -v data:/data filebot-alpine -script fn:sysinfo

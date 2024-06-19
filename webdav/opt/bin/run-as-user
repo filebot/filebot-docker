@@ -1,0 +1,20 @@
+#!/bin/sh -u
+
+
+# run as root
+if [ 0 -eq "$PUID" ] || [ 0 -eq "$PGID" ]; then
+	exec "$@"
+fi
+
+
+# configure normal user
+export HOME="$HOME/$PUSER"
+(
+	getent group "$PGID" || addgroup "$PGROUP" --gid "$PGID"
+	getent passwd "$PUID" || adduser "$PUSER" --uid "$PUID" --gid "$PGID" --gecos "" --home "$HOME" --disabled-password
+	mkdir -p "$HOME"
+	chown -R "$PUID:$PGID" "$HOME"
+) > /dev/null 2>&1
+
+# run as normal user
+sudo --user "#$PUID" --group "#$PGID" --non-interactive --preserve-env -- "$@"
