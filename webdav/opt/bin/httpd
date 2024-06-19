@@ -2,8 +2,8 @@
 
 cd "$HOME"
 
-# prepare the lock database
-touch "DavLock"
+# create or truncate the lock database
+cat /dev/null > "DavLock"
 
 # prepare the passwd file
 echo "$USERNAME:$REALM:$(echo -n "$USERNAME:$REALM:$PASSWORD" | md5sum | cut -d' ' -f1)" > "user.passwd"
