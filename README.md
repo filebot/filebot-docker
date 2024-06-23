@@ -5,7 +5,8 @@ Docker images for [FileBot](https://www.filebot.net/).
 - [`filebot-node`](#filebot-node) web application ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.node))
 - [`filebot-watcher`](#filebot-watcher) command-line tool ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.watcher))
 - [`filebot-xpra`](#filebot-xpra) remote desktop environment ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.xpra))
-
+- [`filebot-projector`](#filebot-projector) web renderer ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.projector))
+- [`filebot-webdav`](#filebot-webdav) webdav server ([Dockerfile](https://github.com/filebot/filebot-docker/blob/master/Dockerfile.webdav))
 
 ## filebot
 
@@ -140,6 +141,57 @@ If the clipboard does not work, then you may need to enable `Clipboard` permissi
 ![Xpra Remote Desktop - Enable Copy & Paste](https://raw.githubusercontent.com/filebot/docs/master/screenshots/filebot-xpra-clipboard.png)
 
 If you have a `Reverse Proxy` that takes care of SSL and authentication, then you can disable authentication via `-e XPRA_AUTH=none` and disable remote access via `-e XPRA_BIND=127.0.0.1`.
+
+
+## filebot-projector
+
+Run the [FileBot Desktop application](https://www.filebot.net/getting-started/) via [JetBrains Projector](https://github.com/JetBrains/projector-server) and make it remotely available at [http://localhost:8887/](http://localhost:8887/).
+
+```bash
+docker run --rm -it -v "$PWD:/volume1" -v data:/data -p 8887:8887 rednoah/filebot:projector
+```
+
+```yml
+# docker-compose.yml
+version: '3.3'
+services:
+  filebot:
+    container_name: filebot-projector
+    image: rednoah/filebot:projector
+    restart: unless-stopped
+    volumes:
+      - ${HOME}/FileBot:/data
+      - ${HOME}/path/to/files:/volume1
+    ports:
+      - 8887:8887
+```
+
+
+## filebot-webdav
+
+Run an [Apache WebDAV Server](https://httpd.apache.org/docs/2.4/mod/mod_dav.html) for remote file system access via [http://localhost:8080/](http://localhost:8080/).
+
+```bash
+docker run -it -v "$PWD:/volume1" -v data:/data -e USERNAME=alice -e PASSWORD=secret1234 -p 8080:8080 filebot-webdav
+```
+
+```yml
+# docker-compose.yml
+version: '3.3'
+services:
+  filebot:
+    container_name: filebot-webdav
+    image: rednoah/filebot:webdav
+    restart: unless-stopped
+    volumes:
+      - ${HOME}/FileBot:/data
+      - ${HOME}/path/to/files:/volume1
+    ports:
+      - 8080:8080
+    environment:
+      - USERNAME=alice
+      - PASSWORD=secret1234
+```
 
 
 
