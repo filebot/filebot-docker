@@ -1,8 +1,26 @@
-FROM rednoah/filebot:beta
+FROM rednoah/filebot
 
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
+# REQUIRES FileBot r10340 OR HIGHER
+ENV FILEBOT_VERSION 5.1.4
+ENV FILEBOT_URL https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}_universal.deb
+
+
+RUN set -eux \
+ ## ** uninstall stable release
+ && DEBIAN_FRONTEND=noninteractive apt-get purge -y filebot \
+ && rm -rv /usr/share/filebot \
+ ## ** install latest revision
+ && curl -o /tmp/filebot.deb "https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}_universal.deb" \
+ && dpkg -i /tmp/filebot.deb \
+ && rm -v /tmp/filebot.deb \
+ ## ** apply custom application configuration
+ && sed -i 's|APP_DATA=.*|APP_DATA="$HOME"|g; s|-Dapplication.deployment=deb|-Dapplication.deployment=docker -Duser.home="$HOME"|g' /usr/bin/filebot
+
+
+# REQUIRES FileBot r10340 OR HIGHER
 RUN set -eux \
  ## ** install projector
  && curl -fsSL -o /tmp/projector-server.zip https://github.com/JetBrains/projector-server/releases/download/v1.8.1/projector-server-v1.8.1.zip \
