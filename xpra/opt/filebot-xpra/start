@@ -34,8 +34,13 @@ xpra start \
   -e '/tmp/xpra/0/socket' \
   -e 'created abstract sockets' \
   -e '@xpra/0' \
+  -e '/data/filebot/.xpra' \
+  -e 'private server socket path' \
+  -e '/tmp/xpra/0/pulse/pulse/native' \
   -e 'cannot create group socket' \
+  -e '/run/dbus/system_bus_socket' \
   -e 'Errno 13' \
+  -e 'import asyncore' \
   -e 'watching for applications menu changes' \
   -e '/usr/share/applications' \
   -e '/usr/share/xpra/www' \
