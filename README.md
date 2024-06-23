@@ -192,6 +192,7 @@ services:
       - USERNAME=alice
       - PASSWORD=secret1234
 ```
+![Map Network Drive via HTTP WebDAV](https://github.com/filebot/docs/raw/master/screenshots/filebot-webdav-map-network-drive.png)
 
 
 
