@@ -1,7 +1,0 @@
-#!/bin/sh -xu
-
-
-export PASSWORD_HASH=$(caddy hash-password -plaintext "$PASSWORD")
-
-
-/usr/bin/supervisord
