@@ -27,6 +27,7 @@ services:
     volumes:
       - ${HOME}/FileBot:/data
       - ${HOME}/path/to/files:/volume1
+    command: -script fn:sysinfo
 ```
 
 
