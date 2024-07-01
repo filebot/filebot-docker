@@ -21,7 +21,7 @@ filebot-projector:
 
 filebot-webdav:
 	docker build --rm -t filebot-webdav -f Dockerfile.webdav .
-	docker run -it -v ${PWD}:/volume1 -v data:/data -e USERNAME=alice -e PASSWORD=secret1234 -p 8080:8080 filebot-webdav
+	docker run -it -v ${PWD}:/volume1 -e USERNAME=alice -e PASSWORD=secret1234 -p 8080:8080 filebot-webdav
 
 filebot-alpine:
 	docker build --rm -t filebot-alpine -f Dockerfile.alpine .
