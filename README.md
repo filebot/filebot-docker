@@ -14,7 +14,7 @@ The [`filebot`](https://www.filebot.net/cli.html) command-line tool.
 
 ```bash
 # Run `filebot -script fn:sysinfo`
-docker run --rm -it -v "$PWD:/volume1" -v data:/data rednoah/filebot -script fn:sysinfo
+docker run --rm -it -v data:/data -v "$PWD:/volume1" rednoah/filebot -script fn:sysinfo
 ```
 
 ```yml
@@ -36,7 +36,7 @@ services:
 FileBot Node allows you to call the [amc script](https://www.filebot.net/amc.html) via a simple web interface.
 
 ```bash
-docker run --rm -it -v "$PWD:/volume1" -v data:/data -p 5452:5452 rednoah/filebot:node
+docker run --rm -it -v data:/data -v "$PWD:/volume1" -p 5452:5452 rednoah/filebot:node
 ```
 
 ```yml
@@ -58,7 +58,7 @@ Once the [FileBot Node Service](https://github.com/filebot/filebot-node) is runn
 
 You may secure the [FileBot Node Service](https://github.com/filebot/filebot-node) by using `HTTPS` and `BASIC` authentication:
 ```bash
-docker run --rm -it -v "$PWD:/volume1" -v data:/data -p 5452:5452 -e FILEBOT_NODE_AUTH=BASIC -e FILEBOT_NODE_AUTH_USER=YOUR_USERNAME -e FILEBOT_NODE_AUTH_PASS=YOUR_PASSWORD -p 5453:5453 -v /etc/ssl:/etc/ssl:ro -e FILEBOT_NODE_HTTPS=YES -e FILEBOT_NODE_HTTPS_PORT=5453 -e FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key -e FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt rednoah/filebot:node
+docker run --rm -it -v data:/data -v "$PWD:/volume1" -p 5452:5452 -e FILEBOT_NODE_AUTH=BASIC -e FILEBOT_NODE_AUTH_USER=YOUR_USERNAME -e FILEBOT_NODE_AUTH_PASS=YOUR_PASSWORD -p 5453:5453 -v /etc/ssl:/etc/ssl:ro -e FILEBOT_NODE_HTTPS=YES -e FILEBOT_NODE_HTTPS_PORT=5453 -e FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key -e FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt rednoah/filebot:node
 ```
 
 ```yml
@@ -93,7 +93,7 @@ services:
 The [`filebot-watcher`](https://github.com/filebot/filebot-docker/blob/master/watcher/opt/bin/filebot-watcher) command-line tool watches a given folder and executes the [amc script](https://www.filebot.net/amc.html) on newly added files. Please read the [manual](https://www.filebot.net/forums/viewtopic.php?t=13038) for details and watch the [video tutorial](https://www.youtube.com/watch?v=AjP-ci9Cx5Q) to see it in action.
 
 ```bash
-docker run --rm -it -v "$PWD:/volume1" -v data:/data rednoah/filebot:watcher /volume1/input --output /volume1/output
+docker run --rm -it -v data:/data -v "$PWD:/volume1" rednoah/filebot:watcher /volume1/input --output /volume1/output
 ```
 The first argument `$1` is the watch folder. The remaining arguments are [amc script](https://www.filebot.net/amc.html) options.
 
@@ -117,7 +117,7 @@ services:
 Run the [FileBot Desktop application](https://www.filebot.net/getting-started/) via [xpra](https://xpra.org/) and make it remotely available at [http://localhost:5454/](http://localhost:5454/).
 
 ```bash
-docker run --rm -it -v "$PWD:/volume1" -v data:/data -p 5454:5454 -e XPRA_AUTH="password:value=YOUR_PASSWORD" rednoah/filebot:xpra
+docker run --rm -it -v data:/data -v "$PWD:/volume1" -p 5454:5454 -e XPRA_AUTH="password:value=YOUR_PASSWORD" rednoah/filebot:xpra
 ```
 
 ```yml
@@ -149,7 +149,7 @@ If you have a `Reverse Proxy` that takes care of SSL and authentication, then yo
 Run the [FileBot Desktop application](https://www.filebot.net/getting-started/) via [JetBrains Projector](https://github.com/JetBrains/projector-server) and make it remotely available at [http://localhost:8887/](http://localhost:8887/).
 
 ```bash
-docker run --rm -it -v "$PWD:/volume1" -v data:/data -p 8887:8887 rednoah/filebot:projector
+docker run --rm -it -v data:/data -v "$PWD:/volume1" -p 8887:8887 rednoah/filebot:projector
 ```
 
 ```yml
@@ -208,7 +208,7 @@ docker run --rm -it -v data:/data rednoah/filebot --license
 ```
 ```bash
 # Read License Key from License File
-docker run --rm -it -v "$PWD:/volume1" -v data:/data rednoah/filebot --license /volume1/T1000.psm
+docker run --rm -it -v data:/data -v "$PWD:/volume1" rednoah/filebot --license /volume1/T1000.psm
 ```
 Your license will then be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
 
