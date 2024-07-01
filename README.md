@@ -210,7 +210,7 @@ docker run --rm -it -v "data:/data" rednoah/filebot --license
 # Read License Key from License File
 docker run --rm -it -v "data:/data" -v "$PWD:/volume1" rednoah/filebot --license /volume1/T1000.psm
 ```
-Your license will then be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
+Your license will then be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers. All your FileBot docker containers must therefore use the same `data:/data` volume mount. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
 
 If you use `-e PUID` or `-e PGID` to run `filebot` with a different UID then you must use the same `-e PUID` or `-e PGID` environment variables when calling `filebot --license` to install the your license key into the correct user-specific application data folder.
 
