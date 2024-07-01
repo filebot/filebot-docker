@@ -210,7 +210,7 @@ docker run --rm -it -v "data:/data" rednoah/filebot --license
 # Read License Key from License File
 docker run --rm -it -v "data:/data" -v "$PWD:/volume1" rednoah/filebot --license /volume1/T1000.psm
 ```
-Your license will then be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder. All your FileBot docker containers must therefore use the same `data:/data` volume mount so that they can share the same application data folder. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
+Your license will then be stored in `-v data:/data` (i.e. named persistent volume `data` mapped as `/data` in the container file system) which is the persistent application data folder. All your FileBot docker containers must therefore use the same `data:/data` volume mount so that they can share the same application data folder. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
 
 If you use `-e PUID` or `-e PGID` to run `filebot` with a different UID then you must use the same `-e PUID` or `-e PGID` environment variables when calling `filebot --license` to install the your license key into the correct user-specific application data folder.
 
@@ -225,7 +225,7 @@ docker run --rm -it -v "data:/data" rednoah/filebot -script fn:configure
 # Pass login details via Command-line Arguments
 docker run --rm -it -v "data:/data" rednoah/filebot -script fn:configure --def osdbUser=USERNAME --def osdbPwd=PASSWORD
 ```
-Your user settings will then be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder. All your FileBot docker containers must therefore use the same `data:/data` volume mount so that they can share the same application data folder.
+Your user settings will then be stored in `-v data:/data` (i.e. named persistent volume `data` mapped as `/data` in the container file system) which is the persistent application data folder. All your FileBot docker containers must therefore use the same `data:/data` volume mount so that they can share the same application data folder.
 
 
 ## How to do I run the process inside the container as a different user?
