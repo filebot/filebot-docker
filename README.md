@@ -225,7 +225,7 @@ docker run --rm -it -v "data:/data" rednoah/filebot -script fn:configure
 # Pass login details via Command-line Arguments
 docker run --rm -it -v "data:/data" rednoah/filebot -script fn:configure --def osdbUser=USERNAME --def osdbPwd=PASSWORD
 ```
-Your user settings will be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder common to all FileBot docker containers.
+Your license will then be stored in `-v data:/data` (i.e. bind named persistent volume `data` as `/data` into the container file system) which is the persistent application data folder. All your FileBot docker containers must therefore use the same `data:/data` volume mount so that they can share the same application data folder.
 
 
 ## How to do I run the process inside the container as a different user?
