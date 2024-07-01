@@ -173,7 +173,7 @@ services:
 Run an [Apache WebDAV Server](https://httpd.apache.org/docs/2.4/mod/mod_dav.html) for remote file system access via [http://localhost:8080/](http://localhost:8080/).
 
 ```bash
-docker run -it -v "$PWD:/volume1" -e USERNAME=alice -e PASSWORD=secret1234 -p 8080:8080 rednoah/filebot:webdav
+docker run --rm -it -v "$PWD:/volume1" -e USERNAME=alice -e PASSWORD=secret1234 -p 8080:8080 rednoah/filebot:webdav
 ```
 
 ```yml
