@@ -58,7 +58,7 @@ Once the [FileBot Node Service](https://github.com/filebot/filebot-node) is runn
 
 You may secure the [FileBot Node Service](https://github.com/filebot/filebot-node) by using `HTTPS` and `BASIC` authentication:
 ```bash
-docker run --rm -it -v "data:/data" -v "$PWD:/volume1" -p 5452:5452 -e FILEBOT_NODE_AUTH=BASIC -e FILEBOT_NODE_AUTH_USER=YOUR_USERNAME -e FILEBOT_NODE_AUTH_PASS=YOUR_PASSWORD -p 5453:5453 -v /etc/ssl:/etc/ssl:ro -e FILEBOT_NODE_HTTPS=YES -e FILEBOT_NODE_HTTPS_PORT=5453 -e FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key -e FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt rednoah/filebot:node
+docker run --rm -it -v "data:/data" -v "$PWD:/volume1" -e FILEBOT_NODE_AUTH=BASIC -e FILEBOT_NODE_AUTH_USER=YOUR_USERNAME -e FILEBOT_NODE_AUTH_PASS=YOUR_PASSWORD -p 5452:5452 -v /etc/ssl:/etc/ssl:ro -e FILEBOT_NODE_HTTPS=YES -e FILEBOT_NODE_HTTPS_PORT=5453 -e FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key -e FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt -p 5453:5453 rednoah/filebot:node
 ```
 
 ```yml
@@ -117,7 +117,7 @@ services:
 Run the [FileBot Desktop application](https://www.filebot.net/getting-started/) via [xpra](https://xpra.org/) and make it remotely available at [http://localhost:5454/](http://localhost:5454/).
 
 ```bash
-docker run --rm -it -v "data:/data" -v "$PWD:/volume1" -p 5454:5454 -e XPRA_AUTH="password:value=YOUR_PASSWORD" rednoah/filebot:xpra
+docker run --rm -it -v "data:/data" -v "$PWD:/volume1" -e XPRA_AUTH="password:value=YOUR_PASSWORD" -p 5454:5454 rednoah/filebot:xpra
 ```
 
 ```yml
@@ -173,7 +173,7 @@ services:
 Run an [Apache WebDAV Server](https://httpd.apache.org/docs/2.4/mod/mod_dav.html) for remote file system access via [http://localhost:8080/](http://localhost:8080/).
 
 ```bash
-docker run -it -v "$PWD:/volume1" -p 8080:8080 -e USERNAME=alice -e PASSWORD=secret1234 rednoah/filebot:webdav
+docker run -it -v "$PWD:/volume1" -e USERNAME=alice -e PASSWORD=secret1234 -p 8080:8080 rednoah/filebot:webdav
 ```
 
 ```yml
@@ -204,7 +204,7 @@ services:
 You can activate your license by calling `filebot --license` from within the docker container.
 ```bash
 # Read License Key from Console Input
-docker run --rm -it -v data:/data rednoah/filebot --license
+docker run --rm -it -v "data:/data" rednoah/filebot --license
 ```
 ```bash
 # Read License Key from License File
@@ -241,7 +241,7 @@ environment:
 ```
 You may use `PUID=0` to run as default `root` user or docker `--user`:
 ```bash
-docker run --rm -it -e PUID=0 -e PGID=0 -v "data:/data" rednoah/filebot -script fn:sysinfo
+docker run --rm -it -v "data:/data" -e PUID=0 -e PGID=0 rednoah/filebot -script fn:sysinfo
 ```
 
 
@@ -249,7 +249,7 @@ docker run --rm -it -e PUID=0 -e PGID=0 -v "data:/data" rednoah/filebot -script 
 
 You can use the `--entrypoint` option to run `bash` on startup:
 ```
-$ docker run --rm -it -e PUID=1000 -e PGID=1000 -v "data:/data" -v "$PWD:/volume1" --entrypoint /opt/bin/run-as-user rednoah/filebot bash
+$ docker run --rm -it -v "data:/data" -v "$PWD:/volume1" -e PUID=1000 -e PGID=1000 --entrypoint /opt/bin/run-as-user rednoah/filebot bash
 filebot@dcc9dbeac18d:/$ filebot -version
 FileBot 4.9.6 (r9125)
 ```
