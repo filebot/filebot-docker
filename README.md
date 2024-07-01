@@ -25,8 +25,8 @@ services:
     container_name: filebot
     image: rednoah/filebot
     volumes:
-      - ${HOME}/FileBot:/data
-      - ${HOME}/path/to/files:/volume1
+      - data:/data
+      - /path/to/files:/volume1
     command: -script fn:sysinfo
 ```
 
@@ -48,8 +48,8 @@ services:
     image: rednoah/filebot:node
     restart: unless-stopped
     volumes:
-      - ${HOME}/FileBot:/data
-      - ${HOME}/path/to/files:/volume1
+      - data:/data
+      - /path/to/files:/volume1
     ports:
       - 5452:5452
 ```
@@ -70,9 +70,9 @@ services:
     image: rednoah/filebot:node
     restart: unless-stopped
     volumes:
+      - data:/data
+      - /path/to/files:/volume1
       - /etc/ssl:/etc/ssl:ro
-      - ${HOME}/FileBot:/data
-      - ${HOME}/path/to/files:/volume1
     ports:
       - 5452:5452
       - 5453:5453
@@ -106,8 +106,8 @@ services:
     image: rednoah/filebot:watcher
     restart: unless-stopped
     volumes:
-      - ${HOME}/FileBot:/data
-      - ${HOME}/path/to/files:/volume1
+      - data:/data
+      - /path/to/files:/volume1
     command: /volume1/input --output /volume1/output # see amc script usage
 ```
 
@@ -129,8 +129,8 @@ services:
     image: rednoah/filebot:xpra
     restart: unless-stopped
     volumes:
-      - ${HOME}/FileBot:/data
-      - ${HOME}/path/to/files:/volume1
+      - data:/data
+      - /path/to/files:/volume1
     ports:
       - 5454:5454
     environment:
@@ -161,8 +161,8 @@ services:
     image: rednoah/filebot:projector
     restart: unless-stopped
     volumes:
-      - ${HOME}/FileBot:/data
-      - ${HOME}/path/to/files:/volume1
+      - data:/data
+      - /path/to/files:/volume1
     ports:
       - 8887:8887
 ```
@@ -173,7 +173,7 @@ services:
 Run an [Apache WebDAV Server](https://httpd.apache.org/docs/2.4/mod/mod_dav.html) for remote file system access via [http://localhost:8080/](http://localhost:8080/).
 
 ```bash
-docker run -it -v "$PWD:/volume1" -v data:/data -e USERNAME=alice -e PASSWORD=secret1234 -p 8080:8080 rednoah/filebot:webdav
+docker run -it -v "$PWD:/volume1" -e USERNAME=alice -e PASSWORD=secret1234 -p 8080:8080 rednoah/filebot:webdav
 ```
 
 ```yml
@@ -185,8 +185,7 @@ services:
     image: rednoah/filebot:webdav
     restart: unless-stopped
     volumes:
-      - ${HOME}/FileBot:/data
-      - ${HOME}/path/to/files:/volume1
+      - /path/to/files:/volume1
     ports:
       - 8080:8080
     environment:
