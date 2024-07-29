@@ -3,9 +3,9 @@ FROM ghcr.io/graalvm/graalvm-ce:latest
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_VERSION 5.1.3
+ENV FILEBOT_VERSION 5.1.4
 ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
-ENV FILEBOT_SHA256 d539025770a383fe5864e0dc795e66403b0f624d3d214efe507c0f470b76bc04
+ENV FILEBOT_SHA256 504806ddb413e463cc7e1fe7c42d5a5c6b1bf07284e4ebf96b1d142e32ebef75
 
 
 ENV FILEBOT_HOME /opt/filebot
