@@ -22,7 +22,6 @@ ENV FILEBOT_URL=https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}_
 RUN set -eux \
  ## ** uninstall stable release
  && DEBIAN_FRONTEND=noninteractive apt-get purge -y filebot \
- && rm -rv /usr/share/filebot \
  ## ** install latest revision
  && curl -o /tmp/filebot.deb "https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}_universal.deb" \
  && dpkg -i /tmp/filebot.deb \
