@@ -12,21 +12,21 @@ RUN set -eux \
 COPY webdav /
 
 
-ENV HOME /data
-ENV LANG C.UTF-8
+ENV HOME="/data"
+ENV LANG="C.UTF-8"
 
-ENV PUID 1000
-ENV PGID 1000
-ENV PUSER httpd
-ENV PGROUP httpd
+ENV PUID="1000"
+ENV PGID="1000"
+ENV PUSER="httpd"
+ENV PGROUP="httpd"
 
-ENV REALM "WebDAV"
-ENV USERNAME "anonymous"
-ENV PASSWORD ""
+ENV REALM="WebDAV"
+ENV USERNAME="anonymous"
+ENV PASSWORD=""
 
-ENV ROOT /volume1
-ENV HOST localhost
-ENV PORT 8080
+ENV ROOT="/volume1"
+ENV HOST="localhost"
+ENV PORT="8080"
 
 
 EXPOSE 8080

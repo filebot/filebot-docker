@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_VERSION 5.1.4
+ENV FILEBOT_VERSION="5.1.4"
 
 
 RUN set -eux \
@@ -31,13 +31,13 @@ RUN set -eux \
 COPY generic /
 
 
-ENV HOME /data
-ENV LANG C.UTF-8
+ENV HOME="/data"
+ENV LANG="C.UTF-8"
 
-ENV PUID 1000
-ENV PGID 1000
-ENV PUSER filebot
-ENV PGROUP filebot
+ENV PUID="1000"
+ENV PGID="1000"
+ENV PUSER="filebot"
+ENV PGROUP="filebot"
 
 
 ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/run", "/usr/bin/filebot"]

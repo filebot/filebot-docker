@@ -3,12 +3,12 @@ FROM ghcr.io/graalvm/graalvm-ce:latest
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_VERSION 5.1.4
-ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
-ENV FILEBOT_SHA256 504806ddb413e463cc7e1fe7c42d5a5c6b1bf07284e4ebf96b1d142e32ebef75
+ENV FILEBOT_VERSION="5.1.4"
+ENV FILEBOT_URL="https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz"
+ENV FILEBOT_SHA256="504806ddb413e463cc7e1fe7c42d5a5c6b1bf07284e4ebf96b1d142e32ebef75"
 
 
-ENV FILEBOT_HOME /opt/filebot
+ENV FILEBOT_HOME="/opt/filebot"
 
 
 RUN microdnf install glibc-langpack-en xz \
@@ -28,9 +28,9 @@ RUN set -eux \
  && ln -s /data /opt/filebot/data
 
 
-ENV HOME /data
-ENV LANG C.UTF-8
-ENV FILEBOT_OPTS "-Dapplication.deployment=docker -Duser.home=$HOME"
+ENV HOME="/data"
+ENV LANG="C.UTF-8"
+ENV FILEBOT_OPTS="-Dapplication.deployment=docker -Duser.home=$HOME"
 
 
 RUN set -eux \
