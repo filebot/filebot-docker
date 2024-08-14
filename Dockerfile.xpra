@@ -11,7 +11,7 @@ RUN set -eux \
  && curl -o /usr/share/keyrings/xpra.asc https://xpra.org/xpra.asc \
  && curl -o /etc/apt/sources.list.d/xpra.sources https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/jammy/xpra.sources \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-17-jre zenity xdg-utils nautilus gedit trash-cli \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-21-jre zenity xdg-utils nautilus gedit trash-cli \
  ## ** fix xdg-open behaviour
  && rm -rvf /usr/share/applications/* \
  && rm -rvf /usr/share/file-manager/actions/* \
