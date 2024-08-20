@@ -12,10 +12,10 @@ RUN set -eux \
 
 
 # build trigger and cache buster
-ENV FILEBOT_REVISION="r10362"
+ENV FILEBOT_REVISION="r10380"
 
 
-ENV FILEBOT_VERSION="5.1.4"
+ENV FILEBOT_VERSION="5.1.5"
 ENV FILEBOT_URL="https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}_universal.deb"
 
 
