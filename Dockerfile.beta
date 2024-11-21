@@ -3,16 +3,8 @@ FROM rednoah/filebot:xpra
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-# additional dependencies
-RUN set -eux \
- ## ** install dependencies
- && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick webp \
- && rm -rvf /var/lib/apt/lists/*
-
-
 # build trigger and cache buster
-ENV FILEBOT_REVISION="r10380"
+ENV FILEBOT_REVISION="r10448"
 
 
 ENV FILEBOT_VERSION="5.1.6"
