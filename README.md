@@ -16,6 +16,18 @@ The [`filebot`](https://www.filebot.net/cli.html) command-line tool.
 # Run `filebot -script fn:sysinfo`
 docker run --rm -it -v "data:/data" -v "$PWD:/volume1" rednoah/filebot -script fn:sysinfo
 ```
+```bash
+# Run `filebot --license`
+docker run --rm -it -v "data:/data" -v "$PWD:/volume1" rednoah/filebot --license
+```
+```bash
+# Run `filebot -rename -r . --format {plex.id}`
+docker run --rm -it -v "data:/data" -v "$PWD:/volume1" rednoah/filebot -rename -r /volume1 --format {plex.id}
+```
+```bash
+# Run `filebot -script fn:amc ./input --output ./output --action duplicate -non-strict --log-file amc.log --def excludeList=amc.txt`
+docker run --rm -it -v "data:/data" -v "$PWD:/volume1" rednoah/filebot -script fn:amc /volume1/input --output /volume1/output --action duplicate -non-strict --log-file amc.log --def excludeList=amc.txt
+```
 
 ```yml
 # docker-compose.yml
