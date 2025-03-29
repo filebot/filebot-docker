@@ -222,7 +222,25 @@ docker run --rm -it -v "data:/data" rednoah/filebot --license
 # Read License Key from License File
 docker run --rm -it -v "data:/data" -v "$PWD:/volume1" rednoah/filebot --license /volume1/T1000.psm
 ```
-Your license will then be stored in `-v data:/data` (i.e. named persistent volume `data` mapped as `/data` in the container file system) which is the persistent application data folder. All your FileBot docker containers must therefore use the same `data:/data` volume mount so that they can share the same application data folder. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
+Your license will then be stored in `-v data:/data` (i.e. named persistent volume `data` mapped as `/data` in the container file system) which is the persistent application data folder. All your FileBot docker containers must therefore use the same `data:/data` volume mount so that they can share the same application data folder. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details. 
+
+Alternatively, you can map your license file into the container at the expected file path directly via your launch configuration:
+```sh
+docker run --rm -it -v "data:/data" -v "/path/to/FileBot_License_P58134642.psm:/data/filebot/license.txt" -v "/path/to/files:/volume1" rednoah/filebot -script fn:sysinfo
+```
+```yml
+# docker-compose.yml
+version: '3.3'
+services:
+  filebot:
+    container_name: filebot
+    image: rednoah/filebot
+    volumes:
+      - data:/data
+      - /path/to/FileBot_License_P58134642.psm:/data/filebot/license.txt
+      - /path/to/files:/volume1
+    command: -script fn:sysinfo
+```
 
 If you use `-e PUID` or `-e PGID` to run `filebot` with a different UID then you must use the same `-e PUID` or `-e PGID` environment variables when calling `filebot --license` to install the your license key into the correct user-specific application data folder.
 
