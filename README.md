@@ -228,7 +228,7 @@ If you use `-e PUID` or `-e PGID` to run `filebot` with a different UID then you
 
 Alternatively, you can map your license file into the container at the expected file path directly via your launch configuration:
 ```sh
-docker run --rm -it -v "data:/data" -v "/path/to/FileBot_License_P58134642.psm:/data/filebot/license.txt" -v "/path/to/files:/volume1" rednoah/filebot -script fn:sysinfo
+docker run --rm -it -v "data:/data" -v "/path/to/FileBot_License_P12345678.psm:/data/filebot/license.txt" -v "/path/to/files:/volume1" rednoah/filebot -script fn:sysinfo
 ```
 ```yml
 # docker-compose.yml
@@ -239,7 +239,7 @@ services:
     image: rednoah/filebot
     volumes:
       - data:/data
-      - /path/to/FileBot_License_P58134642.psm:/data/filebot/license.txt
+      - /path/to/FileBot_License_P12345678.psm:/data/filebot/license.txt
       - /path/to/files:/volume1
     command: -script fn:sysinfo
 ```
