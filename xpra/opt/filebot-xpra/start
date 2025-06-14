@@ -19,7 +19,8 @@ xpra start \
 | grep -v \
   -e 'pointer device emulation using XTest' \
   -e 'uinput' \
-  -e 'missing audio module' \
+  -e "missing 'audio' module" \
+  -e 'for Python 3' \
   -e 'failed to choose pdev' \
   -e 'failed to create drisw screen' \
   -e 'some GStreamer elements are missing' \
