@@ -222,7 +222,7 @@ If you are using the [`filebot-node`](#filebot-node) container, please install y
 ![Tools ➔ License](https://i.imgur.com/mQGgEKt.png)
 
 
-Alternatively, you can activate your license by calling `filebot --license` from within the docker container.
+Alternatively, you can activate your license by calling `filebot --license` from within the docker container:
 ```bash
 # Read License Key from Console Input
 docker run --rm -it -v "data:/data" rednoah/filebot --license
