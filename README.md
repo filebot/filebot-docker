@@ -214,9 +214,11 @@ services:
 ## How do I activate my license?
 
 If you are using the [`filebot-xpra`](#filebot-xpra) container, please install your license key via the `Paste License Key` button or the `Select License Key` button in the GUI as usual:
+
 ![Paste License Key](https://i.imgur.com/Ug8FHnV.png)
 
 If you are using the [`filebot-node`](#filebot-node) container, please install your license key via the `Tools ➔ License` button button in the WebUI as usual:
+
 ![Tools ➔ License](https://i.imgur.com/mQGgEKt.png)
 
 Alternatively, you can activate your license by calling `filebot --license` from within the docker container.
@@ -230,7 +232,7 @@ docker run --rm -it -v "data:/data" -v "$PWD:/volume1" rednoah/filebot --license
 ```
 Your license will then be stored in `-v data:/data` (i.e. named persistent volume `data` mapped as `/data` in the container file system) which is the persistent application data folder. All your FileBot docker containers must therefore use the same `data:/data` volume mount so that they can share the same application data folder. Please read [Run your app in production ➔ Manage application data ➔ Volumes](https://docs.docker.com/storage/volumes/) for details.
 
-**If you use `-e PUID` or `-e PGID` to run `filebot` with a different UID then you must use the same `-e PUID` or `-e PGID` environment variables when calling `filebot --license` to install the your license key into the correct user-specific application data folder. DO NOT open a shell to a running container to call `filebot --license` because your shell will be running as `root(0)` and not as `filebot(PUID)` user.**
+If you use `-e PUID` or `-e PGID` to run `filebot` with a different UID then you must use the same `-e PUID` or `-e PGID` environment variables when calling `filebot --license` to install the your license key into the correct user-specific application data folder. DO NOT open a shell to a running container to call `filebot --license` because your shell will be running as `root(0)` and not as `filebot(PUID)` user.
 
 Alternatively, you can map your license file into the container at the expected file path directly via your launch configuration:
 ```sh
