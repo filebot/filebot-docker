@@ -213,13 +213,14 @@ services:
 
 ## How do I activate my license?
 
-If you are using the [`filebot-xpra`](#filebot-xpra) container, please install your license key via the `Paste License Key` button or the `Select License Key` button in the GUI as usual:
+If you are using the [`filebot-xpra`](#filebot-xpra) container, please install your license key via the `Select License Key` button in the GUI as usual:
 
 ![Paste License Key](https://i.imgur.com/Ug8FHnV.png)
 
 If you are using the [`filebot-node`](#filebot-node) container, please install your license key via the `Tools ➔ License` button button in the WebUI as usual:
 
 ![Tools ➔ License](https://i.imgur.com/mQGgEKt.png)
+
 
 Alternatively, you can activate your license by calling `filebot --license` from within the docker container.
 ```bash
