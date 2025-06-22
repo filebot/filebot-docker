@@ -48,6 +48,7 @@ xpra start \
   -e '/tmp/xpra/0/server.pid' \
   -e 'ibus-daemon' \
   -e 'D-Bus notification forwarding is available' \
+  -e 'org.freedesktop.DBus.Error.Failed: No global engine' \
   -e 'start menu entries' \
   -e 'No OpenGL_accelerate module loaded' \
   -e 'xkbcomp' \
