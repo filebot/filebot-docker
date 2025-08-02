@@ -5,7 +5,6 @@ LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 RUN set -eux \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get remove -y openjdk-21-jre-headless \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-17-jre \
  && rm -rvf /var/lib/apt/lists/*
 
