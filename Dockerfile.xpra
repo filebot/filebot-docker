@@ -14,15 +14,11 @@ RUN set -eux \
  && curl -o /usr/share/keyrings/xpra.asc https://xpra.org/xpra.asc \
  && curl -o /etc/apt/sources.list.d/xpra.sources https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/$XPRA_UBUNTU_RELEASE/xpra.sources \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-17-jre zenity xdg-utils nautilus gedit trash-cli desktop-file-utils nautilus gnome-terminal \
- ## ** fix xdg-open behaviour
- && rm -rvf /usr/share/applications/* \
- && rm -rvf /usr/share/file-manager/actions/* \
- && rm -rvf /usr/share/kio/servicemenus/* /usr/share/kservices5/ServiceMenus/* \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-17-jre zenity xdg-utils trash-cli desktop-file-utils nautilus gedit gnome-terminal \
+ ## ** silence xpra startup error messages
  && mkdir -m 777 -p /tmp/xdg/xpra \
  && rm -rvf /usr/share/xpra/www/default-settings.* \
  && rm -rvf /var/lib/apt/lists/* \
- ## ** silence xpra startup error messages
  && chmod 777 /run/user \
  && mkdir -m 777 -p /run/xpra \
  && chmod 775 /run/xpra \
