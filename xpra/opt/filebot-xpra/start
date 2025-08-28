@@ -7,6 +7,9 @@ export XDG_RUNTIME_DIR="/tmp"
 mkdir -m 700 -p "/tmp/xpra/0"
 mkdir -m 700 -p "/run/user/$PUID/xpra"
 
+# fix file manager favorite folders
+xdg-user-dirs-update --set DESKTOP "$HOME"
+xdg-user-dirs-update --set VIDEOS "$(df -Pk | awk 'NR>1 {print $4, $6}' | sort -nr | head -1 | awk '{print $2}')"
 
 # run xpra service
 xpra start \
