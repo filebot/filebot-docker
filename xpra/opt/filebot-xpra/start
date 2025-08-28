@@ -8,9 +8,9 @@ mkdir -m 700 -p "/tmp/xpra/0"
 mkdir -m 700 -p "/run/user/$PUID/xpra"
 
 # fix file manager favorite folders
-export XDG_DESKTOP_DIR="$(df -Pk | awk 'NR>1 && $6 !~ "^/dev|^/etc|^/proc|^/sys|^/data" {print $4, $6}' | sort -nr | head -1 | awk '{print $2}')"
-xdg-user-dirs-update --set DESKTOP "$XDG_DESKTOP_DIR"
-xdg-user-dirs-update --set DOWNLOAD "$XDG_DESKTOP_DIR"
+export XDG_DOWNLOAD_DIR="$(df -Pk | awk 'NR>1 && $6 !~ "^/dev|^/etc|^/proc|^/sys|^/data" {print $4, $6}' | sort -nr | head -1 | awk '{print $2}')"
+xdg-user-dirs-update --set DESKTOP "$XDG_DOWNLOAD_DIR"
+xdg-user-dirs-update --set DOWNLOAD "$XDG_DOWNLOAD_DIR"
 
 
 # run xpra service
@@ -67,4 +67,7 @@ xpra start \
   -e 'lpinfo command failed' \
   -e '/usr/sbin/lpinfo' \
   -e 'printer forwarding enabled' \
-  -e 'IPv6 loopback address is not supported'
+  -e 'IPv6 loopback address is not supported' \
+  -e 'org.gnome.Nautilus' \
+  -e 'org.freedesktop.Tracker3.Miner.Files'
+
