@@ -8,8 +8,12 @@ mkdir -m 700 -p "/tmp/xpra/0"
 mkdir -m 700 -p "/run/user/$PUID/xpra"
 
 # fix file manager favorite folders
-xdg-user-dirs-update --set DESKTOP "$HOME"
-xdg-user-dirs-update --set VIDEOS "$(df -Pk | awk 'NR>1 && $6 !~ "^/dev|^/etc|^/proc|^/sys|^/data" {print $4, $6}' | sort -nr | head -1 | awk '{print $2}')"
+export XDG_DESKTOP_DIR="$(df -Pk | awk 'NR>1 && $6 !~ "^/dev|^/etc|^/proc|^/sys|^/data" {print $4, $6}' | sort -nr | head -1 | awk '{print $2}')"
+xdg-user-dirs-update --set DESKTOP "$XDG_DESKTOP_DIR"
+xdg-user-dirs-update --set DOWNLOAD "$XDG_DESKTOP_DIR"
+xdg-user-dirs-update --set PUBLICSHARE "$XDG_DESKTOP_DIR"
+xdg-user-dirs-update --set VIDEOS "$XDG_DESKTOP_DIR"
+
 
 # run xpra service
 xpra start \

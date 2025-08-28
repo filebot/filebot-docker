@@ -27,6 +27,14 @@ RUN set -eux \
  && echo "<Menu/>" > /etc/xdg/menus/debian-menu.menu
 
 
+RUN set -eux \
+ ## ** fix xdg-open behaviour
+ && rm -rvf /usr/share/applications/*filebot* \
+ && rm -rvf /usr/share/file-manager/actions/*filebot* \
+ && rm -rvf /usr/share/kio/servicemenus/*filebot* /usr/share/kservices5/ServiceMenus/*filebot* \
+ && update-desktop-database
+
+
 # install custom launcher scripts
 COPY xpra /
 
