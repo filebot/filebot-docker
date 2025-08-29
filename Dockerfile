@@ -10,6 +10,7 @@ RUN set -eux \
  ## ** install dependencies
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-17-jre-headless libjna-java mediainfo libchromaprint-tools trash-cli unzip unrar p7zip-full p7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley imagemagick webp libjxl-tools sudo gnupg curl file inotify-tools rsync jdupes duperemove \
+ ## ** remove large recommended dependencies that are not actually used
     mesa-vulkan-drivers- pocketsphinx-en-us- qt6-translations-l10n- adwaita-icon-theme- poppler-data- fonts-urw-base35- fonts-droid-fallback- fonts-dejavu-core- fonts-dejavu-mono- \
  && rm -rvf /var/lib/apt/lists/* \
  ## ** FIX libjna-java (see https://bugs.launchpad.net/ubuntu/+source/libjna-java/+bug/2000863)
@@ -17,7 +18,7 @@ RUN set -eux \
  ## ** print installed packages index
  && dpkg-query -W -f='${Installed-Size} ${Package}\n' | sort -n
 
- 
+
 RUN set -eux \
  ## ** install filebot
  && curl -fsSL "https://raw.githubusercontent.com/filebot/plugins/master/gpg/maintainer.pub" | gpg --dearmor --output "/usr/share/keyrings/filebot.gpg"  \
