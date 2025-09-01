@@ -3,9 +3,9 @@ FROM rednoah/filebot
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_NODE_VERSION="0.4.8"
+ENV FILEBOT_NODE_VERSION="0.4.8.1"
 ENV FILEBOT_NODE_URL="https://github.com/filebot/filebot-node/releases/download/$FILEBOT_NODE_VERSION/filebot-node_$FILEBOT_NODE_VERSION.tar.xz"
-ENV FILEBOT_NODE_SHA256="35f556cf1be9999cc7c3393f9091806e9ea1c6fc2dc779d6fa4448306cdd6324"
+ENV FILEBOT_NODE_SHA256="5ca37c10fc3fb40ee41b91aa5e7955e09724c9e1beeedbd62f07b650abe31e39"
 
 
 ENV FILEBOT_NODE_HOME="/opt/filebot-node"
