@@ -27,10 +27,6 @@ filebot-alpine:
 	docker build --rm -t filebot-alpine -f Dockerfile.alpine .
 	docker run -it -v ${PWD}:/volume1 -v data:/data filebot-alpine -script fn:sysinfo
 
-filebot-graalvm:
-	docker build --rm -t filebot-graalvm -f Dockerfile.graalvm .
-	docker run -it -v ${PWD}:/volume1 -v data:/data filebot-graalvm -script fn:sysinfo
-
 filebot-beta:
 	docker build --rm -t filebot-beta -f Dockerfile.beta .
 	docker run -it -v ${PWD}:/volume1 -v data:/data filebot-beta -script fn:sysinfo
