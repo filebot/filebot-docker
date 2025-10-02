@@ -9,7 +9,7 @@ ENV FILEBOT_VERSION="5.2.0"
 RUN set -eux \
  ## ** install dependencies
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-17-jre-headless libjna-java mediainfo libchromaprint-tools trash-cli unzip unrar p7zip-full p7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley imagemagick webp avifenc libjxl-tools sudo gnupg curl file tree inotify-tools rsync jdupes duperemove \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-17-jre-headless libjna-java mediainfo libchromaprint-tools trash-cli unzip unrar p7zip-full p7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley imagemagick webp libavif-bin libjxl-tools sudo gnupg curl file tree inotify-tools rsync jdupes duperemove \
  ## ** remove large recommended dependencies that are not actually used
     mesa-vulkan-drivers- pocketsphinx-en-us- qt6-translations-l10n- adwaita-icon-theme- poppler-data- fonts-urw-base35- fonts-droid-fallback- fonts-dejavu-core- fonts-dejavu-mono- \
  && rm -rvf /var/lib/apt/lists/* \
