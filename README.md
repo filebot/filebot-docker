@@ -40,6 +40,8 @@ services:
       - data:/data
       - /path/to/files:/volume1
     command: -script fn:sysinfo
+volumes:
+  data:
 ```
 
 
@@ -64,6 +66,8 @@ services:
       - /path/to/files:/volume1
     ports:
       - 5452:5452
+volumes:
+  data:
 ```
 
 Once the [FileBot Node Service](https://github.com/filebot/filebot-node) is running, you can access the  web interface via [http://localhost:5452/filebot/](http://localhost:5452/filebot/). You can create prepared tasks via `Execute ➔ Schedule` and then execute them remotely via `curl http://localhost:5452/task?id=${TASK_ID}`.
@@ -96,6 +100,8 @@ services:
       - FILEBOT_NODE_HTTPS_PORT=5453
       - FILEBOT_NODE_HTTPS_KEY=/etc/ssl/private/server.key
       - FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt
+volumes:
+  data:
 ```
 ![FileBot Node](https://github.com/filebot/docs/raw/master/screenshots/docker-node.png)
 
@@ -121,6 +127,8 @@ services:
       - data:/data
       - /path/to/files:/volume1
     command: /volume1/input --output /volume1/output # see amc script usage
+volumes:
+  data:
 ```
 
 
@@ -147,6 +155,8 @@ services:
       - 5454:5454
     environment:
       - XPRA_AUTH=password:value=YOUR_PASSWORD
+volumes:
+  data:
 ```
 ![Xpra Remote Desktop](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra.png)
 
@@ -177,6 +187,8 @@ services:
       - /path/to/files:/volume1
     ports:
       - 8887:8887
+volumes:
+  data:
 ```
 
 
@@ -203,6 +215,8 @@ services:
     environment:
       - USERNAME=alice
       - PASSWORD=secret1234
+volumes:
+  data:
 ```
 ![Map Network Drive via HTTP WebDAV](https://github.com/filebot/docs/raw/master/screenshots/filebot-webdav-map-network-drive.png)
 
@@ -251,6 +265,8 @@ services:
       - /path/to/FileBot_License_P12345678.psm:/data/filebot/license.txt
       - /path/to/files:/volume1
     command: -script fn:sysinfo
+volumes:
+  data:
 ```
 
 
