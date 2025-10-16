@@ -14,7 +14,7 @@ RUN set -eux \
  && curl -o /usr/share/keyrings/xpra.asc https://xpra.org/xpra.asc \
  && curl -o /etc/apt/sources.list.d/xpra.sources https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/$XPRA_UBUNTU_RELEASE/xpra.sources \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-17-jre zenity xdg-utils trash-cli desktop-file-utils nautilus gedit gnome-terminal gnome-backgrounds- ubuntu-wallpapers-plucky- cinnamon-l10n- humanity-icon-theme- nemo- \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y xpra openjdk-17-jre zenity xdg-utils trash-cli desktop-file-utils nautilus gedit gnome-terminal ubuntu-wallpapers-plucky- cinnamon-l10n- humanity-icon-theme- nemo- \
  ## ** silence xpra startup error messages
  && mkdir -m 777 -p /tmp/xdg/xpra \
  && rm -rvf /usr/share/xpra/www/default-settings.* \
