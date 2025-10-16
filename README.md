@@ -42,6 +42,7 @@ services:
     command: -script fn:sysinfo
 volumes:
   data:
+    name: filebot-application-data
 ```
 
 
@@ -68,6 +69,7 @@ services:
       - 5452:5452
 volumes:
   data:
+    name: filebot-application-data
 ```
 
 Once the [FileBot Node Service](https://github.com/filebot/filebot-node) is running, you can access the  web interface via [http://localhost:5452/filebot/](http://localhost:5452/filebot/). You can create prepared tasks via `Execute ➔ Schedule` and then execute them remotely via `curl http://localhost:5452/task?id=${TASK_ID}`.
@@ -102,6 +104,7 @@ services:
       - FILEBOT_NODE_HTTPS_CRT=/etc/ssl/certs/server.crt
 volumes:
   data:
+    name: filebot-application-data
 ```
 ![FileBot Node](https://github.com/filebot/docs/raw/master/screenshots/docker-node.png)
 
@@ -129,6 +132,7 @@ services:
     command: /volume1/input --output /volume1/output # see amc script usage
 volumes:
   data:
+    name: filebot-application-data
 ```
 
 
@@ -157,6 +161,7 @@ services:
       - XPRA_AUTH=password:value=YOUR_PASSWORD
 volumes:
   data:
+    name: filebot-application-data
 ```
 ![Xpra Remote Desktop](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra.png)
 
@@ -189,6 +194,7 @@ services:
       - 8887:8887
 volumes:
   data:
+    name: filebot-application-data
 ```
 
 
@@ -217,6 +223,7 @@ services:
       - PASSWORD=secret1234
 volumes:
   data:
+    name: filebot-application-data
 ```
 ![Map Network Drive via HTTP WebDAV](https://github.com/filebot/docs/raw/master/screenshots/filebot-webdav-map-network-drive.png)
 
@@ -267,6 +274,7 @@ services:
     command: -script fn:sysinfo
 volumes:
   data:
+    name: filebot-application-data
 ```
 
 
@@ -315,7 +323,7 @@ FileBot 4.9.6 (r9125)
 
 `docker` treats each volume mount as a separate filesystem. Thus, if you are using `--action MOVE` or `--action HARDLINK` then the input path and the output path must be on the same volume mount. If you process files across volume mounts, then `--action HARDLINK` will fail with `I/O error: cross-device link`, and `--action MOVE` and `--action DUPLICATE` will resort to physically copying files.
 
-Please organize your files like so, and then use `/path/to/files` as volume mount:
+Please organize your files like so, and then use `/path/to/files` as single volume mount:
 ```
 /path/to/files/input
 /path/to/files/output
