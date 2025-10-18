@@ -26,7 +26,8 @@ RUN set -eux \
  && echo "<Menu/>" > /etc/xdg/menus/kde-debian-menu.menu \
  && echo "<Menu/>" > /etc/xdg/menus/debian-menu.menu \
  ## ** fix xdg-open behaviour
- && find /usr/share/applications -not -name 'org.gnome.Terminal.desktop' -not -name 'org.gnome.Nautilus.desktop' -not -name 'org.gnome.gedit.desktop' -type f -delete \
+ && find /usr/share/applications -not -name '*filebot*' -not -name '*Terminal*' -not -name '*Nautilus*' -not -name '*gedit*' -type f -delete \
+ && sed -i 's|MimeType=inode/directory;|MimeType=|g' /usr/share/applications/filebot.desktop \
  && sed -i 's|Name=gedit|Name=Text Editor|g' /usr/share/applications/org.gnome.gedit.desktop \
  && update-desktop-database \
  ## ** print installed packages index

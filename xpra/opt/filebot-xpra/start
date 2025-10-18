@@ -7,6 +7,7 @@ export XDG_RUNTIME_DIR="/tmp"
 mkdir -m 700 -p "/tmp/xpra/0"
 mkdir -m 700 -p "/run/user/$PUID/xpra"
 
+
 # fix file manager favorite folders
 export XDG_DOWNLOAD_DIR="$(df -Pk | awk 'NR>1 && $6 !~ "^/dev|^/etc|^/proc|^/sys|^/data" {print $4, $6}' | sort -nr | head -1 | awk '{print $2}')"
 xdg-user-dirs-update --set DESKTOP "$XDG_DOWNLOAD_DIR"
@@ -16,10 +17,18 @@ xdg-user-dirs-update --set DOWNLOAD "$XDG_DOWNLOAD_DIR"
 # run xpra service
 xpra start \
   --start-child="filebot" \
-  --exit-with-children \
   --bind-tcp="$XPRA_BIND:$XPRA_PORT" \
   --tcp-auth="$XPRA_AUTH" \
   --daemon=no \
+  --pulseaudio=no \
+  --bell=no \
+  --printing=no \
+  --speaker=disabled \
+  --microphone=disabled \
+  --system-tray=no \
+  --min-quality='80' \
+  --video-scaling='0' \
+  --html=on \
   $XPRA_OPTS 2>&1 \
 | grep -v \
   -e 'pointer device emulation using XTest' \
