@@ -166,7 +166,7 @@ volumes:
   data:
     name: filebot-application-data
 ```
-Please read [How do I run the FileBot Desktop application on my Synology NAS or QNAP NAS?](https://www.filebot.net/forums/viewtopic.php?t=14884) for detailed setup instructions.
+Please read [How do I run the FileBot Desktop application on my Synology NAS or QNAP NAS?](https://www.filebot.net/forums/viewtopic.php?t=14884) for detailed setup instructions for `Synology NAS` and `QNAP NAS` devices.
 
 ![Xpra Remote Desktop (native client)](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra-win.avif)
 ![Xpra Remote Desktop (HTML5 client)](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra-web.avif)
