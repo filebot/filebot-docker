@@ -140,7 +140,7 @@ volumes:
 
 ## filebot-xpra
 
-Run the [FileBot Desktop application](https://www.filebot.net/getting-started/) via [xpra](https://xpra.org/) and make it remotely available at [http://localhost:5454/](http://localhost:5454/).
+Run the [FileBot Desktop application](https://www.filebot.net/getting-started/) via [xpra](https://xpra.org/) and make it remotely available at [http://localhost:5454/](http://localhost:5454/). Please read [How do I run the FileBot Desktop application on my Synology NAS or QNAP NAS?](https://www.filebot.net/forums/viewtopic.php?t=14884) for detailed setup instructions.
 
 ```bash
 docker run --rm -it -v "data:/data" -v "$PWD:/volume1" -e XPRA_AUTH="password:value=YOUR_PASSWORD" -p 5454:5454 rednoah/filebot:xpra
