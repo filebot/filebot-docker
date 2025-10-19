@@ -166,7 +166,8 @@ volumes:
   data:
     name: filebot-application-data
 ```
-![Xpra Remote Desktop](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra.png)
+![Xpra Remote Desktop (native client)](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra-win.avif)
+![Xpra Remote Desktop (HTML5 client)](https://github.com/filebot/docs/raw/master/screenshots/docker-xpra-web.avif)
 
 If the clipboard does not work, then you may need to enable `Clipboard` permissions. If `CTRL+V` does not work, then you may need to use `Right-Click ➔ Paste` to paste text from the system clipboard:
 ![Xpra Remote Desktop - Enable Copy & Paste](https://raw.githubusercontent.com/filebot/docs/master/screenshots/filebot-xpra-clipboard.png)
