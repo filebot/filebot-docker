@@ -61,6 +61,7 @@ services:
   filebot-node:
     container_name: filebot-node
     image: rednoah/filebot:node
+    hostname: filebot-node
     restart: unless-stopped
     volumes:
       - data:/data
@@ -86,6 +87,7 @@ services:
   filebot-node:
     container_name: filebot-node
     image: rednoah/filebot:node
+    hostname: filebot-node
     restart: unless-stopped
     volumes:
       - data:/data
@@ -151,7 +153,8 @@ services:
   filebot:
     container_name: filebot-xpra
     image: rednoah/filebot:xpra
-    restart: unless-stopped
+    hostname: filebot-xpra
+    restart: "no"
     volumes:
       - data:/data
       - /path/to/files:/volume1
@@ -186,6 +189,7 @@ services:
   filebot:
     container_name: filebot-projector
     image: rednoah/filebot:projector
+    hostname: filebot-projector
     restart: unless-stopped
     volumes:
       - data:/data
