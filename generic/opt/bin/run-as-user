@@ -1,8 +1,8 @@
 #!/bin/sh -u
 
 
-# run as root
-if [ 0 -eq "$PUID" ] || [ 0 -eq "$PGID" ]; then
+# run as root (or explicitly specified docker --user)
+if [ 0 -eq "$PUID" ] || [ 0 -ne "$(id -u)" ]; then
 	exec "$@"
 fi
 
