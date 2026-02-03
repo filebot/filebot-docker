@@ -4,7 +4,7 @@ LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
 # build trigger and cache buster
-ENV FILEBOT_REVISION="r10914"
+ENV FILEBOT_REVISION="r10918"
 
 
 ENV FILEBOT_VERSION="5.2.1"
