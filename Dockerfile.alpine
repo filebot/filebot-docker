@@ -3,9 +3,9 @@ FROM openjdk:17-alpine
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_VERSION="5.2.0"
+ENV FILEBOT_VERSION="5.2.1"
 ENV FILEBOT_URL="https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz"
-ENV FILEBOT_SHA256="4a4d0695d937c0da47b79296415c3b0c0903038138886e48c0a658126729fbc0"
+ENV FILEBOT_SHA256="d4b60573beb040e9e69647468c4ed9b9187815e336a3c64ce2c7c3c31f21c817"
 
 ENV FILEBOT_HOME="/opt/filebot"
 
