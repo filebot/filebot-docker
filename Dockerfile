@@ -3,7 +3,7 @@ FROM ubuntu:25.04
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV FILEBOT_VERSION="5.2.1"
+ENV FILEBOT_VERSION="5.2.3"
 
 
 RUN set -eux \
