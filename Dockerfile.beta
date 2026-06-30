@@ -7,7 +7,7 @@ LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 ENV FILEBOT_REVISION="r11034"
 
 
-ENV FILEBOT_VERSION="5.2.3"
+ENV FILEBOT_VERSION="5.2.4"
 ENV FILEBOT_URL="https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}_universal.deb"
 
 
