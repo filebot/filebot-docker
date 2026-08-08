@@ -29,7 +29,7 @@ RUN set -eux \
 
 ENV HOME="/data"
 ENV LANG="C.UTF-8"
-ENV FILEBOT_OPTS="-Dapplication.deployment=docker -Dnet.filebot.archive.extractor=ShellExecutables -Duser.home=$HOME"
+ENV FILEBOT_OPTS="-Dapplication.deployment=docker -Duser.home=$HOME"
 
 
 ENTRYPOINT ["/opt/filebot/filebot.sh"]
