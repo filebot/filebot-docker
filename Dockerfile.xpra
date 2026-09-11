@@ -3,7 +3,7 @@ FROM rednoah/filebot
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
-ENV XPRA_UBUNTU_RELEASE="resolute"
+ENV XPRA_UBUNTU_RELEASE="noble"
 
 
 RUN set -eux \

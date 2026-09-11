@@ -1,4 +1,4 @@
-FROM ubuntu:26.04
+FROM ubuntu:24.04
 
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
@@ -11,7 +11,7 @@ RUN set -eux \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-21-jre-headless libjna-java mediainfo libchromaprint-tools trash-cli unzip unrar 7zip 7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley imagemagick webp libavif-bin libjxl-tools sudo git gnupg curl file tree inotify-tools rsync jdupes duperemove \
  ## ** remove large recommended dependencies that are not actually used
-    mesa-vulkan-drivers- pocketsphinx-en-us- qt6-translations-l10n- adwaita-icon-theme- poppler-data- fonts-urw-base35- fonts-droid-fallback- fonts-dejavu-core- fonts-dejavu-mono- \
+    mesa-vulkan-drivers- mesa-libgallium- pocketsphinx-en-us- qt6-translations-l10n- adwaita-icon-theme- poppler-data- fonts-urw-base35- fonts-droid-fallback- fonts-dejavu-core- fonts-dejavu-mono- \
  && rm -rvf /var/lib/apt/lists/* \
  ## ** FIX libjna-java (see https://bugs.launchpad.net/ubuntu/+source/libjna-java/+bug/2000863)
  && ln -s /usr/lib/*-linux-gnu*/jni /usr/lib/jni \
