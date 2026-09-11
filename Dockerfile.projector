@@ -4,12 +4,11 @@ LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
 
 RUN set -eux \
+ ## ** setup projector dependencies
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-21-jre \
- && rm -rvf /var/lib/apt/lists/*
-
-
-RUN set -eux \
+ && DEBIAN_FRONTEND=noninteractive apt-get remove -y openjdk-21-jre openjdk-21-jre-headless \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-17-jre \
+ && rm -rvf /var/lib/apt/lists/* \
  ## ** install projector
  && curl -fsSL -o /tmp/projector-server.zip https://github.com/JetBrains/projector-server/releases/download/v1.8.1/projector-server-v1.8.1.zip \
  && unzip /tmp/projector-server.zip -d /opt \
