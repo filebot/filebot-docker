@@ -1,4 +1,4 @@
-FROM ubuntu:25.04
+FROM ubuntu:26.04
 
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
