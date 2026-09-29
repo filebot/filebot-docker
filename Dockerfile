@@ -13,6 +13,8 @@ RUN set -eux \
  ## ** remove large recommended dependencies that are not actually used
     mesa-vulkan-drivers- pocketsphinx-en-us- qt6-translations-l10n- adwaita-icon-theme- poppler-data- fonts-urw-base35- fonts-droid-fallback- fonts-dejavu-core- fonts-dejavu-mono- \
  && rm -rvf /var/lib/apt/lists/* \
+ ## ** FIX sudo because sudo-rs does not support the --preserve-env option
+ && update-alternatives --set sudo /usr/bin/sudo.ws \
  ## ** FIX libjna-java (see https://bugs.launchpad.net/ubuntu/+source/libjna-java/+bug/2000863)
  && ln -s /usr/lib/*-linux-gnu*/jni /usr/lib/jni \
  ## ** print installed packages index
