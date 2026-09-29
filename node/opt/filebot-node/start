@@ -19,4 +19,4 @@ if [ -f "$FILEBOT_NODE_DATA/environment.sh" ]; then
 fi
 
 
-exec node "/opt/filebot-node/server/app.js"
+exec node --no-deprecation "/opt/filebot-node/server/app.js"
