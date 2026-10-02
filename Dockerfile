@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
 
@@ -9,14 +9,14 @@ ENV FILEBOT_VERSION="5.3.0"
 RUN set -eux \
  ## ** install dependencies
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-21-jre-headless libjna-java mediainfo libchromaprint-tools trash-cli unzip unrar 7zip 7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley imagemagick webp libavif-bin libjxl-tools sudo git gnupg curl file tree inotify-tools rsync jdupes duperemove \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-21-jre-headless libjna-java libchromaprint-tools trash-cli unzip unrar 7zip 7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley imagemagick webp libavif-bin libjxl-tools sudo git gnupg curl file tree inotify-tools rsync jdupes duperemove \
  ## ** remove large recommended dependencies that are not actually used
     mesa-vulkan-drivers- pocketsphinx-en-us- qt6-translations-l10n- adwaita-icon-theme- poppler-data- fonts-urw-base35- fonts-droid-fallback- fonts-dejavu-core- fonts-dejavu-mono- \
  ## ** install MediaInfo 26.05 or higher
  && curl -O https://mediaarea.net/repo/deb/repo-mediaarea_1.0-27_all.deb && dpkg -i repo-mediaarea_1.0-27_all.deb && rm -v repo-mediaarea_1.0-27_all.deb && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y mediainfo \
  && rm -rvf /var/lib/apt/lists/* \
  ## ** FIX sudo because sudo-rs does not support the --preserve-env option
- ## && update-alternatives --set sudo /usr/bin/sudo.ws \
+ && update-alternatives --set sudo /usr/bin/sudo.ws \
  ## ** FIX libjna-java (see https://bugs.launchpad.net/ubuntu/+source/libjna-java/+bug/2000863)
  && ln -s /usr/lib/*-linux-gnu*/jni /usr/lib/jni \
  ## ** print installed packages index

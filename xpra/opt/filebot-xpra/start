@@ -16,7 +16,7 @@ xdg-user-dirs-update --set DOWNLOAD "$XDG_DOWNLOAD_DIR"
 
 # run xpra service
 xpra start \
-  --start-child="filebot" \
+  --start="filebot" \
   --bind-tcp="$XPRA_BIND:$XPRA_PORT" \
   --tcp-auth="$XPRA_AUTH" \
   --daemon=no \
