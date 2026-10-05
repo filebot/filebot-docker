@@ -9,7 +9,7 @@ ENV FILEBOT_VERSION="5.3.0"
 RUN set -eux \
  ## ** install dependencies
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-21-jre-headless libjna-java libchromaprint-tools trash-cli unzip unrar 7zip 7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley imagemagick webp libavif-bin libjxl-tools sudo git gnupg curl file tree inotify-tools rsync jdupes duperemove \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-21-jre-headless libjna-java libchromaprint-tools trash-cli unzip unrar 7zip 7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley imagemagick webp libavif-bin libjxl-tools sudo git gnupg curl file tree inotify-tools gnu-coreutils rsync jdupes duperemove \
  ## ** remove large recommended dependencies that are not actually used
     mesa-vulkan-drivers- pocketsphinx-en-us- qt6-translations-l10n- adwaita-icon-theme- poppler-data- fonts-urw-base35- fonts-droid-fallback- fonts-dejavu-core- fonts-dejavu-mono- \
  ## ** install MediaInfo 26.05 or higher
