@@ -12,14 +12,6 @@ ENV FILEBOT_URL="https://get.filebot.net/filebot/BETA/FileBot_${FILEBOT_VERSION}
 
 
 RUN set -eux \
- && rm /etc/apt/sources.list.d/xpra.sources \
- && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get remove -y openjdk-17-jre openjdk-17-jre-headless \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-21-jre \
- && rm -rvf /var/lib/apt/lists/*
-
-
-RUN set -eux \
  ## ** uninstall stable release
  && DEBIAN_FRONTEND=noninteractive apt-get purge -y filebot \
  ## ** install latest revision
